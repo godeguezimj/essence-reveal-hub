@@ -10,7 +10,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="pt-20 pb-10 border-t border-white/5">
+    <footer className="pt-20 pb-10 border-t border-royal/10 bg-white/60">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid lg:grid-cols-4 gap-10">
           <div className="lg:col-span-2">

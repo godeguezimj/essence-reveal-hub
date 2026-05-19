@@ -25,16 +25,16 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/85 backdrop-blur-xl border-b border-royal/10 shadow-[0_4px_20px_-12px_oklch(0.32_0.18_265/0.25)]"
-          : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-xl border-b border-royal/10 shadow-[0_4px_20px_-12px_oklch(0.32_0.18_265/0.25)]"
+          : "bg-white/70 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between h-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between h-24 md:h-28">
         <a href="#inicio" className="flex items-center gap-2" aria-label="Full Plástica">
           <img
             src={logoAzul}
             alt="Full Plástica"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-16 md:h-20 lg:h-24 w-auto object-contain"
           />
         </a>
 

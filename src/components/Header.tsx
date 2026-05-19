@@ -24,13 +24,13 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[oklch(0.16_0.04_250/0.85)] backdrop-blur-xl border-b border-white/5"
+          ? "bg-white/85 backdrop-blur-xl border-b border-royal/10 shadow-[0_4px_20px_-12px_oklch(0.32_0.18_265/0.25)]"
           : "bg-transparent"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between h-20">
         <a href="#inicio" className="flex items-center gap-2">
-          <span className="font-display text-2xl tracking-wide">
+          <span className="font-display text-2xl tracking-wide text-royal-deep">
             Full <span className="text-gradient-gold font-medium">Plástica</span>
           </span>
         </a>
@@ -40,7 +40,7 @@ export function Header() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-foreground/80 hover:text-gold transition-colors tracking-wide"
+              className="text-sm text-royal-deep/80 hover:text-royal transition-colors tracking-wide"
             >
               {l.label}
             </a>
@@ -57,7 +57,7 @@ export function Header() {
         <button
           aria-label="Menu"
           onClick={() => setOpen(!open)}
-          className="lg:hidden text-foreground p-2"
+          className="lg:hidden text-royal-deep p-2"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>

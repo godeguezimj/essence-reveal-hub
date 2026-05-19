@@ -4,12 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-  font-family: "Cormorant";
-  font-display: swap;
-  src: local("Cormorant Garamond");
-}
-
 @theme inline {
   --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
@@ -40,61 +34,59 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-gold: var(--gold);
-  --color-gold-soft: var(--gold-soft);
-  --color-deep: var(--deep);
-  --color-petrol: var(--petrol);
+  /* Brand: "gold" tokens are mapped to royal blue to keep utility names stable */
+  --color-gold: var(--royal);
+  --color-gold-soft: var(--royal-soft);
+  --color-royal: var(--royal);
+  --color-royal-soft: var(--royal-soft);
+  --color-royal-deep: var(--royal-deep);
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 1.25rem;
 
-  --background: oklch(0.18 0.04 250);
-  --foreground: oklch(0.97 0.005 240);
+  /* Light, airy base */
+  --background: oklch(0.995 0.003 240);
+  --foreground: oklch(0.22 0.05 255);
 
-  --deep: oklch(0.14 0.045 252);
-  --petrol: oklch(0.28 0.05 230);
+  /* Royal blue brand */
+  --royal: oklch(0.48 0.22 263);
+  --royal-soft: oklch(0.62 0.18 260);
+  --royal-deep: oklch(0.32 0.18 265);
+  --royal-tint: oklch(0.96 0.02 255);
 
-  --card: oklch(0.22 0.045 248);
-  --card-foreground: oklch(0.97 0.005 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.05 255);
 
-  --popover: oklch(0.22 0.045 248);
-  --popover-foreground: oklch(0.97 0.005 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.05 255);
 
-  --gold: oklch(0.78 0.13 78);
-  --gold-soft: oklch(0.86 0.08 82);
+  --primary: var(--royal);
+  --primary-foreground: oklch(1 0 0);
 
-  --primary: oklch(0.78 0.13 78);
-  --primary-foreground: oklch(0.16 0.04 250);
+  --secondary: oklch(0.96 0.02 255);
+  --secondary-foreground: oklch(0.22 0.05 255);
 
-  --secondary: oklch(0.28 0.05 230);
-  --secondary-foreground: oklch(0.97 0.005 240);
+  --muted: oklch(0.96 0.015 250);
+  --muted-foreground: oklch(0.48 0.03 255);
 
-  --muted: oklch(0.24 0.04 248);
-  --muted-foreground: oklch(0.74 0.02 240);
+  --accent: var(--royal);
+  --accent-foreground: oklch(1 0 0);
 
-  --accent: oklch(0.78 0.13 78);
-  --accent-foreground: oklch(0.16 0.04 250);
-
-  --destructive: oklch(0.65 0.22 25);
+  --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.78 0.13 78 / 60%);
+  --border: oklch(0.22 0.05 255 / 0.10);
+  --input: oklch(0.22 0.05 255 / 0.14);
+  --ring: oklch(0.48 0.22 263 / 0.45);
 
-  --gradient-deep: linear-gradient(180deg, oklch(0.16 0.045 252) 0%, oklch(0.20 0.05 245) 100%);
-  --gradient-gold: linear-gradient(135deg, oklch(0.82 0.13 82) 0%, oklch(0.68 0.13 60) 100%);
-  --gradient-glow: radial-gradient(circle at 30% 20%, oklch(0.78 0.13 78 / 0.18), transparent 60%);
+  --gradient-royal: linear-gradient(135deg, oklch(0.52 0.22 263) 0%, oklch(0.38 0.2 268) 100%);
+  --gradient-royal-soft: linear-gradient(180deg, oklch(0.97 0.018 255) 0%, oklch(1 0 0) 100%);
+  --gradient-glow: radial-gradient(ellipse at 30% 10%, oklch(0.48 0.22 263 / 0.10), transparent 60%);
 
-  --shadow-glass: 0 8px 32px 0 oklch(0 0 0 / 0.35);
-  --shadow-gold: 0 10px 40px -10px oklch(0.78 0.13 78 / 0.45);
-  --shadow-soft: 0 20px 60px -20px oklch(0 0 0 / 0.5);
-}
-
-.dark {
-  --background: oklch(0.18 0.04 250);
-  --foreground: oklch(0.97 0.005 240);
+  --shadow-soft: 0 18px 50px -20px oklch(0.32 0.18 265 / 0.25);
+  --shadow-card: 0 6px 30px -10px oklch(0.32 0.18 265 / 0.12);
+  --shadow-royal: 0 14px 40px -12px oklch(0.48 0.22 263 / 0.45);
 }
 
 @layer base {
@@ -112,66 +104,133 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(ellipse at top, oklch(0.78 0.13 78 / 0.08), transparent 50%),
-      radial-gradient(ellipse at bottom, oklch(0.28 0.05 230 / 0.25), transparent 60%);
+      radial-gradient(ellipse at top right, oklch(0.48 0.22 263 / 0.06), transparent 55%),
+      radial-gradient(ellipse at bottom left, oklch(0.62 0.18 260 / 0.05), transparent 60%);
     background-attachment: fixed;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--royal-deep);
+  }
+
+  /* Inverted text colors inside royal sections */
+  .on-royal, .on-royal h1, .on-royal h2, .on-royal h3, .on-royal h4 {
+    color: oklch(1 0 0);
   }
 }
 
 @layer components {
+  /* Card surface used across the page (was "glass") */
   .glass {
-    background: linear-gradient(135deg, oklch(1 0 0 / 0.06), oklch(1 0 0 / 0.02));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid oklch(1 0 0 / 0.10);
-    box-shadow: var(--shadow-glass);
+    background: oklch(1 0 0 / 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid oklch(0.48 0.22 263 / 0.10);
+    box-shadow: var(--shadow-card);
   }
 
+  /* Soft royal-tinted card */
   .glass-gold {
-    background: linear-gradient(135deg, oklch(0.78 0.13 78 / 0.10), oklch(0.78 0.13 78 / 0.02));
-    backdrop-filter: blur(20px);
-    border: 1px solid oklch(0.78 0.13 78 / 0.25);
+    background: linear-gradient(135deg, oklch(0.48 0.22 263 / 0.10), oklch(0.48 0.22 263 / 0.03));
+    border: 1px solid oklch(0.48 0.22 263 / 0.22);
   }
+
+  /* Cards inside dark royal sections */
+  .on-royal .glass {
+    background: oklch(1 0 0 / 0.08);
+    border: 1px solid oklch(1 0 0 / 0.18);
+    color: oklch(1 0 0);
+    box-shadow: none;
+    backdrop-filter: blur(18px);
+  }
+  .on-royal .glass-gold {
+    background: oklch(1 0 0 / 0.12);
+    border: 1px solid oklch(1 0 0 / 0.25);
+  }
+  .on-royal .text-muted-foreground { color: oklch(1 0 0 / 0.78); }
+  .on-royal .text-gold,
+  .on-royal .text-gold-soft { color: oklch(0.92 0.04 250); }
 
   .text-gradient-gold {
-    background: var(--gradient-gold);
+    background: var(--gradient-royal);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .on-royal .text-gradient-gold {
+    background: linear-gradient(135deg, #ffffff 0%, oklch(0.88 0.06 250) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
+  /* Primary CTA — royal blue */
   .btn-gold {
-    background: var(--gradient-gold);
-    color: oklch(0.16 0.04 250);
-    box-shadow: var(--shadow-gold);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--gradient-royal);
+    color: oklch(1 0 0);
+    box-shadow: var(--shadow-royal);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
   }
   .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 50px -10px oklch(0.78 0.13 78 / 0.6);
+    filter: brightness(1.06);
+    box-shadow: 0 18px 50px -10px oklch(0.48 0.22 263 / 0.55);
+  }
+  .on-royal .btn-gold {
+    background: #ffffff;
+    color: var(--royal-deep);
+    box-shadow: 0 14px 40px -10px oklch(0 0 0 / 0.35);
   }
 
   .btn-outline-gold {
-    border: 1px solid oklch(0.78 0.13 78 / 0.5);
-    color: var(--gold);
-    background: oklch(1 0 0 / 0.02);
-    backdrop-filter: blur(8px);
+    border: 1px solid oklch(0.48 0.22 263 / 0.4);
+    color: var(--royal);
+    background: oklch(1 0 0 / 0.6);
     transition: all 0.3s ease;
   }
   .btn-outline-gold:hover {
-    background: oklch(0.78 0.13 78 / 0.1);
-    border-color: var(--gold);
+    background: oklch(0.48 0.22 263 / 0.08);
+    border-color: var(--royal);
+  }
+  .on-royal .btn-outline-gold {
+    border-color: oklch(1 0 0 / 0.5);
+    color: #ffffff;
+    background: transparent;
+  }
+  .on-royal .btn-outline-gold:hover {
+    background: oklch(1 0 0 / 0.1);
+    border-color: #ffffff;
   }
 
   .divider-gold {
     height: 1px;
-    background: linear-gradient(90deg, transparent, oklch(0.78 0.13 78 / 0.5), transparent);
+    background: linear-gradient(90deg, transparent, oklch(0.48 0.22 263 / 0.45), transparent);
+  }
+  .on-royal .divider-gold {
+    background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.45), transparent);
+  }
+
+  /* Royal section background */
+  .section-royal {
+    background: var(--gradient-royal);
+    color: oklch(1 0 0);
+    position: relative;
+  }
+  .section-royal::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, oklch(1 0 0 / 0.10), transparent 50%),
+      radial-gradient(ellipse at 10% 80%, oklch(0.7 0.18 260 / 0.4), transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Soft tinted band */
+  .section-tint {
+    background: var(--gradient-royal-soft);
   }
 }
 
@@ -183,6 +242,6 @@
 
 @keyframes shimmer {
   0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+  50% { opacity: 0.9; }
 }
 .animate-shimmer { animation: shimmer 3s ease-in-out infinite; }

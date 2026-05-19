@@ -61,13 +61,13 @@ export function Hero() {
               height={1280}
               className="rounded-[1.5rem] w-full h-[520px] lg:h-[600px] object-cover"
             />
-            <div className="absolute bottom-8 left-8 right-8 glass-gold rounded-2xl px-5 py-4 flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-gold/20 grid place-items-center">
-                <ShieldCheck size={18} className="text-gold" />
+            <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-md border border-royal/15 rounded-2xl px-5 py-4 flex items-center gap-3 shadow-[0_10px_30px_-10px_oklch(0.32_0.18_265/0.35)]">
+              <div className="h-10 w-10 rounded-full bg-royal/10 grid place-items-center">
+                <ShieldCheck size={18} className="text-royal" />
               </div>
               <div>
-                <p className="text-xs text-gold-soft uppercase tracking-widest">Compromisso</p>
-                <p className="text-sm text-foreground">Segurança em cada etapa</p>
+                <p className="text-[10px] text-royal uppercase tracking-[0.22em] font-medium">Compromisso</p>
+                <p className="text-sm text-royal-deep">Segurança em cada etapa</p>
               </div>
             </div>
           </div>

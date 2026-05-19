@@ -15,9 +15,22 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid lg:grid-cols-4 gap-10">
           <div className="lg:col-span-2">
-            <div className="font-display text-2xl">
-              Full <span className="text-gradient-gold font-medium">Plástica</span>
-            </div>
+            <div
+              aria-label="Full Plástica"
+              className="h-14 w-56"
+              style={{
+                backgroundColor: "var(--royal)",
+                WebkitMaskImage: `url(${logo})`,
+                maskImage: `url(${logo})`,
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskPosition: "left center",
+                maskPosition: "left center",
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+              }}
+            />
+
             <p className="mt-4 text-sm text-muted-foreground max-w-md leading-relaxed">
               Clínica de cirurgia plástica com foco em naturalidade, segurança e
               planejamento individualizado para cada paciente.

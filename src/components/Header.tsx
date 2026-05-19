@@ -30,10 +30,12 @@ export function Header() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between h-20">
-        <a href="#inicio" className="flex items-center gap-2">
-          <span className="font-display text-2xl tracking-wide text-royal-deep">
-            Full <span className="text-gradient-gold font-medium">Plástica</span>
-          </span>
+        <a href="#inicio" className="flex items-center gap-2" aria-label="Full Plástica">
+          <img
+            src={logoAzul}
+            alt="Full Plástica"
+            className="h-10 md:h-12 w-auto object-contain"
+          />
         </a>
 
         <nav className="hidden lg:flex items-center gap-9">

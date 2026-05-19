@@ -4,15 +4,14 @@ export function FinalCta() {
   return (
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
-        <div className="relative glass rounded-[2.5rem] p-12 lg:p-20 text-center overflow-hidden">
-          <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-72 w-[600px] rounded-full bg-gold/20 blur-3xl" />
+        <div className="section-royal on-royal relative rounded-[2.5rem] p-12 lg:p-20 text-center overflow-hidden">
           <div className="relative">
-            <p className="text-xs tracking-[0.25em] uppercase text-gold mb-5">Comece agora</p>
+            <p className="text-xs tracking-[0.28em] uppercase text-white/80 mb-5">Comece agora</p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl leading-[1.1] max-w-3xl mx-auto">
               Dê o primeiro passo para uma{" "}
               <span className="text-gradient-gold italic">transformação</span> segura e natural
             </h2>
-            <p className="mt-6 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-white/85 max-w-2xl mx-auto leading-relaxed">
               Fale com a equipe Full Plástica e descubra qual procedimento combina com seu momento,
               seus objetivos e sua autoestima.
             </p>

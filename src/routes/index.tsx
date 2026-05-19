@@ -51,17 +51,18 @@ function Index() {
       <ProcedureSpotlight
         image={blefaroImg}
         eyebrow="Blefaroplastia"
-        title={<>Blefaroplastia: um olhar mais <span className="text-gradient-gold italic">leve</span> e descansado</>}
+        title={<>Um olhar mais <span className="text-gradient-gold italic">leve</span> e rejuvenescido</>}
         text="A blefaroplastia pode ajudar pessoas que se incomodam com excesso de pele nas pálpebras, bolsas abaixo dos olhos ou aparência de cansaço. O objetivo é trazer leveza ao olhar, respeitando a naturalidade do rosto."
         points={[
+          "Olhar mais descansado",
           "Redução do excesso de pele",
-          "Melhora da aparência de cansaço",
-          "Olhar mais leve",
-          "Planejamento personalizado",
-          "Acompanhamento no pós-operatório",
+          "Recuperação acompanhada",
+          "Resultado elegante",
+          "Planejamento individual",
         ]}
-        cta="Agendar avaliação para blefaroplastia"
+        cta="Agendar avaliação"
         reverse
+        dark
       />
       <LeadForm />
       <Timeline />

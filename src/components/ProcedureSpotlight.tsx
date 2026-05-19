@@ -8,6 +8,7 @@ interface Props {
   points: string[];
   cta: string;
   reverse?: boolean;
+  dark?: boolean;
 }
 
 export function ProcedureSpotlight({
@@ -18,13 +19,14 @@ export function ProcedureSpotlight({
   points,
   cta,
   reverse,
+  dark,
 }: Props) {
   return (
-    <section className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-14 items-center">
+    <section className={`py-24 lg:py-32 ${dark ? "section-royal on-royal" : ""}`}>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-2 gap-14 items-center">
         <div className={reverse ? "lg:order-2" : ""}>
           <div className="relative">
-            <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-gold/15 to-transparent blur-2xl" />
+            <div className={`absolute -inset-6 rounded-[2rem] blur-2xl ${dark ? "bg-white/10" : "bg-royal/15"}`} />
             <div className="relative glass rounded-[2rem] p-3 overflow-hidden">
               <img
                 src={image}
@@ -39,14 +41,14 @@ export function ProcedureSpotlight({
         </div>
 
         <div className={reverse ? "lg:order-1" : ""}>
-          <p className="text-xs tracking-[0.25em] uppercase text-gold mb-4">{eyebrow}</p>
+          <p className="text-xs tracking-[0.28em] uppercase text-gold mb-4">{eyebrow}</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl leading-[1.1]">{title}</h2>
           <div className="divider-gold mt-7 w-24" />
           <p className="mt-7 text-muted-foreground leading-relaxed">{text}</p>
 
           <ul className="mt-8 space-y-3">
             {points.map((p) => (
-              <li key={p} className="flex items-start gap-3 text-foreground/90">
+              <li key={p} className="flex items-start gap-3">
                 <span className="mt-0.5 h-5 w-5 rounded-full glass-gold grid place-items-center shrink-0">
                   <Check size={12} className="text-gold" />
                 </span>

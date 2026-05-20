@@ -44,7 +44,7 @@ export function ProcedureSpotlight({
           <p className="text-xs tracking-[0.28em] uppercase text-gold mb-4">{eyebrow}</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl leading-[1.1]">{title}</h2>
           <div className="divider-gold mt-7 w-24" />
-          <p className="mt-7 text-muted-foreground leading-relaxed">{text}</p>
+          <p className={`mt-7 leading-relaxed ${dark ? "text-white/90" : "text-muted-foreground"}`}>{text}</p>
 
           <ul className="mt-8 space-y-3">
             {points.map((p) => (
@@ -52,7 +52,7 @@ export function ProcedureSpotlight({
                 <span className="mt-0.5 h-5 w-5 rounded-full glass-gold grid place-items-center shrink-0">
                   <Check size={12} className="text-gold" />
                 </span>
-                <span className="text-sm">{p}</span>
+                <span className={`text-sm ${dark ? "text-white/85" : ""}`}>{p}</span>
               </li>
             ))}
           </ul>

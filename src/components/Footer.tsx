@@ -17,7 +17,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <div
               aria-label="Full Plástica"
-              className="h-20 w-80"
+              className="h-28 w-[28rem]"
               style={{
                 backgroundColor: "var(--royal)",
                 WebkitMaskImage: `url(${logo})`,

@@ -104,10 +104,6 @@ export function Hero() {
             </div>
           </div>
         </div>
-
-        <div className="lg:col-span-5 relative animate-fade-up">
-          <FaceComposition />
-        </div>
       </div>
     </section>
   );

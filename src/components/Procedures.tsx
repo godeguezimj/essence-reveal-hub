@@ -1,5 +1,7 @@
 import { SectionHeading } from "./SectionHeading";
 import { NoseIcon } from "./NoseIcon";
+import { EyeIcon } from "./EyeIcon";
+
 import { ArrowRight } from "lucide-react";
 
 
@@ -50,6 +52,8 @@ export function Procedures() {
               <div className="flex items-start justify-between">
                 <span className="text-xs text-gold tracking-widest">0{i + 1}</span>
                 {item.title === "Rinoplastia" && <NoseIcon size={44} />}
+                {item.title === "Blefaroplastia" && <EyeIcon size={44} />}
+
               </div>
               <h3 className="text-2xl mt-4 mb-4">{item.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed flex-1">{item.text}</p>

@@ -41,7 +41,7 @@ export function ProcedureSpotlight({
         </div>
 
         <div className={reverse ? "lg:order-1" : ""}>
-          <p className="text-xs tracking-[0.28em] uppercase text-gold mb-4">{eyebrow}</p>
+          <p className={`text-xs tracking-[0.28em] uppercase mb-4 ${dark ? "text-white" : "text-gold"}`}>{eyebrow}</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl leading-[1.1]">{title}</h2>
           <div className="divider-gold mt-7 w-24" />
           <p className={`mt-7 leading-relaxed ${dark ? "text-white/90" : "text-muted-foreground"}`}>{text}</p>

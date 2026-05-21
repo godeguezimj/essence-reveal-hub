@@ -2,159 +2,105 @@ import { ShieldCheck } from "lucide-react";
 import specialistImg from "@/assets/specialist-implant.png";
 
 /**
- * Premium hero composition — specialist holding a silicone implant.
- * Editorial framing with cinematic glow, soft feather edges and
- * a glass trust badge anchored at the bottom.
+ * Premium hero composition — specialist holding a silicone implant,
+ * floating freely with cinematic glow and a glass trust badge.
+ * No container card — the PNG sits directly in the layout.
  */
 export function FaceComposition() {
   return (
-    <div className="relative w-full h-[460px] sm:h-[560px] lg:h-[640px] select-none">
-      {/* Ambient cinematic halos */}
+    <div className="relative w-full h-[480px] sm:h-[600px] lg:h-[680px] select-none">
+      {/* Organic ambient glow */}
       <div
         aria-hidden
-        className="absolute -inset-12 rounded-[3rem] blur-3xl opacity-80 animate-face-glow pointer-events-none"
+        className="absolute inset-0 -z-10 blur-3xl opacity-90 animate-face-glow pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 35% 30%, oklch(0.48 0.22 263 / 0.42), transparent 60%), radial-gradient(ellipse at 70% 78%, oklch(0.62 0.18 260 / 0.28), transparent 65%)",
+            "radial-gradient(ellipse 60% 55% at 50% 42%, oklch(0.48 0.22 263 / 0.38), transparent 70%), radial-gradient(ellipse 45% 40% at 70% 75%, oklch(0.62 0.18 260 / 0.25), transparent 70%)",
         }}
       />
 
-      {/* Glass canvas */}
+      {/* Soft radial light behind the specialist */}
       <div
-        className="relative h-full w-full glass rounded-[2rem] overflow-hidden"
+        aria-hidden
+        className="absolute inset-0 -z-10 pointer-events-none"
         style={{
-          boxShadow:
-            "0 40px 90px -30px oklch(0.32 0.18 265 / 0.45), 0 0 0 1px oklch(0.48 0.22 263 / 0.08), 0 0 60px -10px oklch(0.48 0.22 263 / 0.22)",
           background:
-            "linear-gradient(160deg, oklch(0.98 0.012 255 / 0.7), oklch(0.94 0.025 260 / 0.5) 55%, oklch(0.88 0.045 263 / 0.4))",
+            "radial-gradient(circle at 50% 38%, oklch(1 0 0 / 0.45), transparent 55%)",
         }}
-      >
-        {/* Inner soft light layers */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 30% 20%, oklch(1 0 0 / 0.55), transparent 50%), radial-gradient(circle at 78% 88%, oklch(0.48 0.22 263 / 0.18), transparent 55%)",
-          }}
-        />
+      />
 
-        {/* Editorial radial focus behind the specialist */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none animate-face-glow"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 60% at 50% 45%, oklch(0.62 0.18 260 / 0.30), transparent 70%)",
-          }}
-        />
-
-        {/* Subtle grid wash */}
-        <svg
-          aria-hidden
-          className="absolute inset-0 w-full h-full opacity-[0.05]"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <pattern id="gridw" width="28" height="28" patternUnits="userSpaceOnUse">
-              <path d="M28 0H0V28" fill="none" stroke="oklch(0.32 0.18 265)" strokeWidth="0.6" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#gridw)" />
-        </svg>
-
-        {/* Specialist image — feathered, floating */}
-        <div className="absolute inset-0 flex items-end justify-center overflow-hidden">
-          <img
-            src={specialistImg}
-            alt="Especialista da Full Plástica segurando uma prótese de silicone"
-            className="relative h-[108%] sm:h-[112%] w-auto max-w-none object-contain object-bottom animate-face-float"
+      {/* Floating particles */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none -z-10">
+        {[
+          { left: "8%", top: "18%", d: 0 },
+          { left: "88%", top: "22%", d: 1.4 },
+          { left: "14%", top: "70%", d: 2.6 },
+          { left: "84%", top: "62%", d: 3.2 },
+          { left: "50%", top: "8%", d: 4.1 },
+          { left: "6%", top: "48%", d: 6.2 },
+          { left: "94%", top: "44%", d: 7.0 },
+        ].map((p, i) => (
+          <span
+            key={i}
+            className="absolute h-1.5 w-1.5 rounded-full animate-face-particle"
             style={{
-              filter:
-                "drop-shadow(0 30px 50px oklch(0.32 0.18 265 / 0.35)) drop-shadow(0 8px 18px oklch(0.32 0.18 265 / 0.22))",
-              WebkitMaskImage:
-                "radial-gradient(ellipse 80% 92% at 50% 48%, #000 70%, transparent 100%)",
-              maskImage:
-                "radial-gradient(ellipse 80% 92% at 50% 48%, #000 70%, transparent 100%)",
+              left: p.left,
+              top: p.top,
+              background:
+                "radial-gradient(circle, oklch(0.62 0.18 260 / 0.7), oklch(0.48 0.22 263 / 0) 70%)",
+              boxShadow: "0 0 12px oklch(0.48 0.22 263 / 0.55)",
+              animationDelay: `${p.d}s`,
             }}
-            loading="eager"
-            decoding="async"
           />
-        </div>
+        ))}
+      </div>
 
-        {/* Floating premium particles */}
-        <div aria-hidden className="absolute inset-0 pointer-events-none">
-          {[
-            { left: "10%", top: "20%", d: 0 },
-            { left: "85%", top: "24%", d: 1.4 },
-            { left: "18%", top: "72%", d: 2.6 },
-            { left: "78%", top: "66%", d: 3.2 },
-            { left: "52%", top: "10%", d: 4.1 },
-            { left: "8%", top: "50%", d: 6.2 },
-            { left: "92%", top: "46%", d: 7.0 },
-          ].map((p, i) => (
-            <span
-              key={i}
-              className="absolute h-1.5 w-1.5 rounded-full animate-face-particle"
-              style={{
-                left: p.left,
-                top: p.top,
-                background:
-                  "radial-gradient(circle, oklch(0.62 0.18 260 / 0.75), oklch(0.48 0.22 263 / 0) 70%)",
-                boxShadow: "0 0 12px oklch(0.48 0.22 263 / 0.55)",
-                animationDelay: `${p.d}s`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Sweeping cinematic light */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none mix-blend-screen animate-face-sweep"
+      {/* Specialist image — free, feathered, cinematic */}
+      <div className="absolute inset-0 flex items-end justify-center">
+        <img
+          src={specialistImg}
+          alt="Especialista da Full Plástica segurando uma prótese de silicone"
+          className="relative h-full w-auto max-w-none object-contain object-bottom animate-face-float"
           style={{
-            background:
-              "linear-gradient(115deg, transparent 38%, oklch(1 0 0 / 0.16) 50%, transparent 62%)",
+            filter:
+              "drop-shadow(0 35px 55px oklch(0.32 0.18 265 / 0.32)) drop-shadow(0 10px 22px oklch(0.32 0.18 265 / 0.22))",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 85% 96% at 50% 50%, #000 80%, transparent 100%)",
+            maskImage:
+              "radial-gradient(ellipse 85% 96% at 50% 50%, #000 80%, transparent 100%)",
           }}
+          loading="eager"
+          decoding="async"
         />
+      </div>
 
-        {/* Bottom premium fade for badge contrast */}
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to top, oklch(0.98 0.012 255 / 0.85), transparent)",
-          }}
-        />
-
-        {/* Inner ring */}
-        <div className="absolute inset-3 rounded-[1.6rem] pointer-events-none ring-1 ring-white/25" />
-
-        {/* Premium badge */}
-        <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8 bg-white/80 backdrop-blur-xl border border-royal/15 rounded-2xl px-5 py-4 flex items-center gap-3 shadow-[0_18px_40px_-15px_oklch(0.32_0.18_265/0.45)]">
-          <div className="h-10 w-10 rounded-full bg-royal/10 grid place-items-center shrink-0">
-            <ShieldCheck size={18} className="text-royal" />
-          </div>
-          <div>
-            <p className="text-[10px] text-royal uppercase tracking-[0.22em] font-medium">
-              Experiência premium
-            </p>
-            <p className="text-sm text-royal-deep">
-              Naturalidade, segurança e acompanhamento próximo
-            </p>
-          </div>
+      {/* Floating premium badge */}
+      <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-6 sm:right-6 mx-auto max-w-md bg-white/70 backdrop-blur-xl border border-royal/15 rounded-2xl px-5 py-4 flex items-center gap-3 shadow-[0_24px_50px_-18px_oklch(0.32_0.18_265/0.45)] animate-badge-float">
+        <div className="h-10 w-10 rounded-full bg-royal/10 grid place-items-center shrink-0">
+          <ShieldCheck size={18} className="text-royal" />
+        </div>
+        <div>
+          <p className="text-[10px] text-royal uppercase tracking-[0.22em] font-medium">
+            Experiência premium
+          </p>
+          <p className="text-sm text-royal-deep">
+            Naturalidade, segurança e acompanhamento próximo
+          </p>
         </div>
       </div>
 
       <style>{`
         @keyframes face-float {
           0%, 100% { transform: translateY(0) }
-          50% { transform: translateY(-8px) }
+          50% { transform: translateY(-10px) }
+        }
+        @keyframes badge-float {
+          0%, 100% { transform: translateY(0) }
+          50% { transform: translateY(-4px) }
         }
         @keyframes face-glow {
-          0%, 100% { opacity: 0.75; transform: scale(1); }
-          50% { opacity: 0.95; transform: scale(1.04); }
+          0%, 100% { opacity: 0.8; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.05); }
         }
         @keyframes face-particle {
           0% { opacity: 0; transform: translateY(0) scale(0.8); }
@@ -162,21 +108,16 @@ export function FaceComposition() {
           80% { opacity: 0.8; }
           100% { opacity: 0; transform: translateY(-32px) scale(1.15); }
         }
-        @keyframes face-sweep {
-          0% { transform: translateX(-30%); opacity: 0; }
-          40% { opacity: 0.55; }
-          100% { transform: translateX(30%); opacity: 0; }
-        }
         .animate-face-float { animation: face-float 9s ease-in-out infinite; }
+        .animate-badge-float { animation: badge-float 7s ease-in-out infinite; }
         .animate-face-glow { animation: face-glow 8s ease-in-out infinite; }
         .animate-face-particle { animation: face-particle 7s ease-in-out infinite; }
-        .animate-face-sweep { animation: face-sweep 11s ease-in-out infinite; }
 
         @media (prefers-reduced-motion: reduce) {
           .animate-face-float,
+          .animate-badge-float,
           .animate-face-glow,
-          .animate-face-particle,
-          .animate-face-sweep { animation: none !important; }
+          .animate-face-particle { animation: none !important; }
         }
       `}</style>
     </div>

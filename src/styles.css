@@ -298,3 +298,15 @@
 }
 .animate-nose-glow { animation: nose-glow 3.5s ease-in-out infinite; }
 
+@keyframes eye-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.15); }
+  97% { transform: scaleY(1); }
+}
+.animate-eye-blink {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: eye-blink 5s ease-in-out infinite;
+}
+
+

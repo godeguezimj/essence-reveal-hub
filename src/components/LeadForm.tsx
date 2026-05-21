@@ -20,32 +20,91 @@ import {
   Check,
   ShieldCheck,
   MessageCircle,
+  Droplet,
+  Sun,
+  Waves,
+  Activity,
+  Scan,
+  Wind,
+  Mountain,
+  Maximize2,
+  Layers,
+  Ruler,
+  Feather,
 } from "lucide-react";
 
 type Option = { value: string; label: string; icon: React.ComponentType<{ className?: string }> };
 
+type ProcedureKey = "Blefaroplastia" | "Lipo HD" | "Prótese de Silicone" | "Rinoplastia";
+
 const procedimentos: Option[] = [
-  { value: "Rinoplastia", label: "Rinoplastia", icon: Sparkles },
   { value: "Blefaroplastia", label: "Blefaroplastia", icon: Eye },
-  { value: "Harmonização facial", label: "Harmonização facial", icon: Wand2 },
-  { value: "Ainda não sei", label: "Ainda não sei", icon: HelpCircle },
+  { value: "Lipo HD", label: "Lipo HD", icon: Activity },
+  { value: "Prótese de Silicone", label: "Prótese de Silicone", icon: Droplet },
+  { value: "Rinoplastia", label: "Rinoplastia", icon: Sparkles },
 ];
 
-const incomodos: Option[] = [
-  { value: "Estética do nariz", label: "Estética do nariz", icon: Sparkles },
-  { value: "Nariz torto", label: "Nariz torto", icon: Wand2 },
-  { value: "Ponta caída", label: "Ponta caída", icon: Heart },
-  { value: "Bolsas abaixo dos olhos", label: "Bolsas abaixo dos olhos", icon: Eye },
-  { value: "Pálpebras caídas", label: "Pálpebras caídas", icon: Moon },
-  { value: "Aparência de cansaço", label: "Aparência de cansaço", icon: Smile },
-  { value: "Quero entender melhor meu caso", label: "Quero entender melhor meu caso", icon: Search },
-];
+const incomodosPorProcedimento: Record<ProcedureKey, { title: string; hint: string; options: Option[] }> = {
+  Blefaroplastia: {
+    title: "O que mais te incomoda hoje?",
+    hint: "Queremos entender o que faz sentido para você.",
+    options: [
+      { value: "Pálpebras caídas", label: "Pálpebras caídas", icon: Moon },
+      { value: "Bolsas abaixo dos olhos", label: "Bolsas abaixo dos olhos", icon: Eye },
+      { value: "Aparência de cansaço", label: "Aparência de cansaço", icon: Smile },
+      { value: "Olhar pesado", label: "Olhar pesado", icon: Sun },
+      { value: "Quero entender meu caso", label: "Quero entender meu caso", icon: Search },
+    ],
+  },
+  "Lipo HD": {
+    title: "O que você deseja melhorar?",
+    hint: "Cada corpo possui necessidades diferentes.",
+    options: [
+      { value: "Gordura localizada", label: "Gordura localizada", icon: Waves },
+      { value: "Definição abdominal", label: "Definição abdominal", icon: Activity },
+      { value: "Contorno corporal", label: "Contorno corporal", icon: Scan },
+      { value: "Flacidez", label: "Flacidez", icon: Layers },
+      { value: "Quero entender meu caso", label: "Quero entender meu caso", icon: Search },
+    ],
+  },
+  "Prótese de Silicone": {
+    title: "O que você busca com o procedimento?",
+    hint: "Seu planejamento deve respeitar sua anatomia e seus objetivos.",
+    options: [
+      { value: "Mais volume", label: "Mais volume", icon: Maximize2 },
+      { value: "Mais harmonia corporal", label: "Mais harmonia corporal", icon: Wand2 },
+      { value: "Recuperar autoestima", label: "Recuperar autoestima", icon: Heart },
+      { value: "Melhorar proporção", label: "Melhorar proporção", icon: Ruler },
+      { value: "Quero entender meu caso", label: "Quero entender meu caso", icon: Search },
+    ],
+  },
+  Rinoplastia: {
+    title: "O que mais te incomoda no nariz?",
+    hint: "Vamos entender qual abordagem faz mais sentido para você.",
+    options: [
+      { value: "Nariz torto", label: "Nariz torto", icon: Wand2 },
+      { value: "Giba óssea", label: "Giba óssea", icon: Mountain },
+      { value: "Ponta caída", label: "Ponta caída", icon: Feather },
+      { value: "Nariz largo", label: "Nariz largo", icon: Maximize2 },
+      { value: "Respiração", label: "Respiração", icon: Wind },
+      { value: "Quero entender meu caso", label: "Quero entender meu caso", icon: Search },
+    ],
+  },
+};
 
 const prazos: Option[] = [
   { value: "O mais rápido possível", label: "O mais rápido possível", icon: Zap },
   { value: "Nos próximos meses", label: "Nos próximos meses", icon: CalendarClock },
   { value: "Apenas pesquisando", label: "Apenas pesquisando", icon: CalendarRange },
 ];
+
+function formatWhatsapp(raw: string) {
+  const d = raw.replace(/\D/g, "").slice(0, 11);
+  if (d.length <= 2) return d.length ? `(${d}` : "";
+  if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+  if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
 
 const STEPS = [
   { key: "procedimento", label: "Procedimento" },

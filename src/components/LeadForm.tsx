@@ -240,7 +240,7 @@ export function LeadForm() {
                 {step === 0 && (
                   <StepQuestion title="Qual procedimento deseja entender melhor?" hint="Você pode mudar essa escolha depois.">
                     <ChoicesGrid options={procedimentos} value={form.procedimento}
-                      onChange={(v) => { setForm({ ...form, procedimento: v }); setTimeout(goNext, 220); }} />
+                      onChange={(v) => { setForm({ ...form, procedimento: v, incomodo: "" }); setTimeout(goNext, 220); }} />
                   </StepQuestion>
                 )}
 

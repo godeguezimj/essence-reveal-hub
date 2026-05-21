@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Move, ShieldCheck, Sparkles, Stethoscope, HeartHandshake } from "lucide-react";
 import rinoAntes from "@/assets/rino-antes.jpg";
 import rinoDepois from "@/assets/rino-depois.jpg";
@@ -9,11 +9,8 @@ import harmoDepois from "@/assets/harmo-depois.jpg";
 import planAntes from "@/assets/plan-antes.jpg";
 import planDepois from "@/assets/plan-depois.jpg";
 
-type Category = "todos" | "rinoplastia" | "blefaroplastia" | "harmonizacao" | "planejamento";
-
 interface Result {
   id: string;
-  category: Exclude<Category, "todos">;
   label: string;
   description: string;
   cta: string;
@@ -24,48 +21,36 @@ interface Result {
 const results: Result[] = [
   {
     id: "rino",
-    category: "rinoplastia",
     label: "Rinoplastia",
     description: "Mais harmonia facial e um perfil equilibrado com naturalidade.",
-    cta: "Ver resultados de rinoplastia",
+    cta: "Ver resultados",
     before: rinoAntes,
     after: rinoDepois,
   },
   {
     id: "blefaro",
-    category: "blefaroplastia",
     label: "Blefaroplastia",
     description: "Olhar mais leve, descansado e rejuvenescido.",
-    cta: "Ver resultados de blefaroplastia",
+    cta: "Ver transformação",
     before: blefaroAntes,
     after: blefaroDepois,
   },
   {
     id: "harmo",
-    category: "harmonizacao",
     label: "Harmonização Facial",
     description: "Equilíbrio, definição e realce dos traços com naturalidade.",
-    cta: "Ver resultados de harmonização",
+    cta: "Descobrir possibilidades",
     before: harmoAntes,
     after: harmoDepois,
   },
   {
     id: "plan",
-    category: "planejamento",
     label: "Planejamento Personalizado",
     description: "Análise completa do seu rosto para um plano individual e exclusivo.",
-    cta: "Entenda nosso planejamento",
+    cta: "Entender meu caso",
     before: planAntes,
     after: planDepois,
   },
-];
-
-const filters: { id: Category; label: string }[] = [
-  { id: "todos", label: "Todos" },
-  { id: "rinoplastia", label: "Rinoplastia" },
-  { id: "blefaroplastia", label: "Blefaroplastia" },
-  { id: "harmonizacao", label: "Harmonização Facial" },
-  { id: "planejamento", label: "Planejamento Personalizado" },
 ];
 
 const trust = [
@@ -74,6 +59,8 @@ const trust = [
   { icon: Stethoscope, label: "Tecnologia avançada e técnicas atualizadas" },
   { icon: HeartHandshake, label: "Acompanhamento completo em todas as etapas" },
 ];
+
+const AUTOPLAY_MS = 6500;
 
 function BeforeAfter({ before, after, alt }: { before: string; after: string; alt: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -110,7 +97,7 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/5] rounded-[1.25rem] overflow-hidden select-none cursor-ew-resize group/ba"
+      className="relative w-full aspect-[4/5] sm:aspect-[5/4] rounded-[1.25rem] overflow-hidden select-none cursor-ew-resize group/ba"
       onMouseDown={(e) => {
         dragging.current = true;
         setFromClientX(e.clientX);
@@ -120,14 +107,12 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
         setFromClientX(e.touches[0].clientX);
       }}
     >
-      {/* After image (full) */}
       <img
         src={after}
         alt={`${alt} — depois`}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover/ba:scale-[1.03]"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1400ms] group-hover/ba:scale-[1.04]"
       />
-      {/* Before image (clipped) */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
@@ -136,11 +121,10 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
           src={before}
           alt={`${alt} — antes`}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover/ba:scale-[1.03]"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1400ms] group-hover/ba:scale-[1.04]"
         />
       </div>
 
-      {/* Labels */}
       <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] tracking-[0.22em] uppercase font-medium bg-black/55 text-white backdrop-blur-sm">
         Antes
       </span>
@@ -148,12 +132,10 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
         Depois
       </span>
 
-      {/* Divider line */}
       <div
         className="absolute top-0 bottom-0 w-px bg-white/90 shadow-[0_0_18px_oklch(0.48_0.22_263/0.6)] pointer-events-none"
         style={{ left: `${pos}%` }}
       />
-      {/* Handle */}
       <div
         className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-11 w-11 rounded-full bg-white grid place-items-center shadow-[0_8px_24px_-6px_oklch(0.32_0.18_265/0.5),0_0_0_4px_oklch(1_0_0_/0.35)] transition-transform duration-300 group-hover/ba:scale-110"
         style={{ left: `${pos}%` }}
@@ -164,12 +146,76 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
   );
 }
 
-export function Results() {
-  const [active, setActive] = useState<Category>("todos");
-  const visible = useMemo(
-    () => (active === "todos" ? results : results.filter((r) => r.category === active)),
-    [active],
+function Slide({ r }: { r: Result }) {
+  return (
+    <article className="procedure-card relative rounded-[2rem] p-5 sm:p-6 lg:p-8 grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+      <BeforeAfter before={r.before} after={r.after} alt={r.label} />
+
+      <div className="px-1 sm:px-2 lg:px-4">
+        <p className="text-[10px] tracking-[0.28em] uppercase text-royal/70 font-medium">
+          {r.label}
+        </p>
+        <h3 className="mt-3 text-2xl sm:text-3xl lg:text-[2.25rem] leading-[1.12]">
+          Resultado <span className="text-gradient-gold italic">natural</span>{" "}
+          que valoriza você
+        </h3>
+        <div className="divider-gold mt-5 w-16" />
+        <p className="mt-5 text-sm sm:text-base text-foreground/85 leading-relaxed max-w-md">
+          {r.description}
+        </p>
+        <a
+          href="#avaliacao"
+          className="group/cta mt-7 inline-flex items-center gap-2 text-[13px] font-medium text-royal-deep border border-royal/20 bg-white/60 rounded-full px-5 py-2.5 transition-all duration-400 hover:bg-royal hover:text-white hover:border-royal hover:shadow-[0_12px_32px_-12px_oklch(0.48_0.22_263/0.55),0_0_28px_-6px_oklch(0.48_0.22_263/0.4)]"
+        >
+          {r.cta}
+          <ArrowRight
+            size={14}
+            className="transition-transform duration-300 group-hover/cta:translate-x-1"
+          />
+        </a>
+      </div>
+    </article>
   );
+}
+
+export function Results() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const total = results.length;
+
+  // Autoplay with progress bar
+  useEffect(() => {
+    if (paused) return;
+    setProgress(0);
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / AUTOPLAY_MS);
+      setProgress(p);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    const t = setTimeout(() => setIndex((i) => (i + 1) % total), AUTOPLAY_MS);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
+  }, [index, paused, total]);
+
+  // Swipe
+  const touchStart = useRef<number | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current == null) return;
+    const dx = e.changedTouches[0].clientX - touchStart.current;
+    if (Math.abs(dx) > 50) {
+      setIndex((i) => (dx < 0 ? (i + 1) % total : (i - 1 + total) % total));
+    }
+    touchStart.current = null;
+  };
 
   return (
     <section id="resultados" className="relative py-24 lg:py-32 overflow-hidden">
@@ -206,58 +252,81 @@ export function Results() {
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="mt-10 -mx-5 sm:mx-0">
-          <div className="flex sm:flex-wrap gap-2 sm:gap-3 overflow-x-auto px-5 sm:px-0 scrollbar-none">
-            {filters.map((f) => {
-              const isActive = active === f.id;
-              return (
-                <button
-                  key={f.id}
-                  onClick={() => setActive(f.id)}
-                  className={`shrink-0 rounded-full px-5 py-2.5 text-xs sm:text-[13px] font-medium tracking-wide transition-all duration-400 border ${
-                    isActive
-                      ? "bg-royal text-white border-royal shadow-[0_10px_30px_-12px_oklch(0.48_0.22_263/0.6),0_0_0_4px_oklch(0.48_0.22_263/0.12)]"
-                      : "bg-white/70 text-royal-deep border-royal/15 hover:border-royal/40 hover:bg-white hover:shadow-[0_6px_24px_-10px_oklch(0.48_0.22_263/0.35)]"
-                  }`}
-                >
-                  {f.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        {/* Carousel */}
+        <div
+          className="mt-12 relative"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {/* Side fades */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-20 z-10"
+            style={{ background: "linear-gradient(90deg, var(--background), transparent)" }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-20 z-10"
+            style={{ background: "linear-gradient(270deg, var(--background), transparent)" }}
+          />
 
-        {/* Gallery */}
-        <div className="mt-10 sm:mt-12 -mx-5 sm:mx-0">
-          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-2 gap-5 sm:gap-7 overflow-x-auto sm:overflow-visible px-5 sm:px-0 snap-x snap-mandatory scrollbar-none pb-2">
-            {visible.map((r) => (
-              <article
-                key={r.id}
-                className="procedure-card relative shrink-0 snap-center w-[88vw] sm:w-auto rounded-[1.75rem] p-4 sm:p-5 flex flex-col"
-              >
-                <BeforeAfter before={r.before} after={r.after} alt={r.label} />
-
-                <div className="px-2 sm:px-3 pt-5 pb-2">
-                  <p className="text-[10px] tracking-[0.24em] uppercase text-royal/70 font-medium">
-                    {r.label}
-                  </p>
-                  <p className="mt-2 text-sm sm:text-[15px] text-foreground/85 leading-relaxed">
-                    {r.description}
-                  </p>
-                  <a
-                    href="#avaliacao"
-                    className="group/cta mt-5 inline-flex items-center gap-2 text-[13px] font-medium text-royal-deep border border-royal/20 bg-white/60 rounded-full px-4 py-2 transition-all duration-400 hover:bg-royal hover:text-white hover:border-royal hover:shadow-[0_10px_28px_-12px_oklch(0.48_0.22_263/0.55)]"
-                  >
-                    {r.cta}
-                    <ArrowRight
-                      size={14}
-                      className="transition-transform duration-300 group-hover/cta:translate-x-1"
-                    />
-                  </a>
+          {/* Track */}
+          <div
+            className="overflow-hidden rounded-[2rem]"
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+          >
+            <div
+              className="flex"
+              style={{
+                transform: `translateX(-${index * 100}%)`,
+                transition: "transform 1.1s cubic-bezier(0.65, 0, 0.35, 1)",
+              }}
+            >
+              {results.map((r) => (
+                <div key={r.id} className="w-full shrink-0 px-1 sm:px-2">
+                  <Slide r={r} />
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Controls — dots + progress */}
+          <div className="mt-7 flex items-center justify-between gap-6">
+            <div className="flex items-center gap-2.5">
+              {results.map((r, i) => (
+                <button
+                  key={r.id}
+                  aria-label={`Ir para ${r.label}`}
+                  onClick={() => setIndex(i)}
+                  className={`h-2 rounded-full transition-all duration-500 ${
+                    i === index
+                      ? "w-8 bg-royal shadow-[0_0_18px_oklch(0.48_0.22_263/0.5)]"
+                      : "w-2 bg-royal/25 hover:bg-royal/45"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3 flex-1 max-w-[16rem]">
+              <span
+                className={`h-1.5 w-1.5 rounded-full ${
+                  paused ? "bg-royal/30" : "bg-royal animate-shimmer"
+                }`}
+              />
+              <div className="relative flex-1 h-px bg-royal/15 overflow-hidden rounded-full">
+                <div
+                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-royal/70 to-royal"
+                  style={{
+                    width: `${progress * 100}%`,
+                    transition: paused ? "none" : "width 80ms linear",
+                  }}
+                />
+              </div>
+              <span className="text-[10px] tracking-[0.2em] uppercase text-royal-deep/60 tabular-nums">
+                {String(index + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -300,14 +369,14 @@ export function Results() {
             você?
           </h3>
           <p className="mt-4 max-w-xl mx-auto text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Agende sua avaliação personalizada e descubra as melhores
+            Receba uma avaliação personalizada e descubra as melhores
             possibilidades para o seu caso.
           </p>
           <a
             href="#avaliacao"
             className="btn-gold group mt-7 inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-medium"
           >
-            Quero agendar minha avaliação
+            Quero entender meu caso
             <ArrowRight
               size={16}
               className="transition-transform duration-300 group-hover:translate-x-1"

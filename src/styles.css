@@ -99,6 +99,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
@@ -108,10 +109,18 @@
     font-weight: 400;
     letter-spacing: 0.005em;
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
     background-image:
       radial-gradient(ellipse at top right, oklch(0.48 0.22 263 / 0.06), transparent 55%),
       radial-gradient(ellipse at bottom left, oklch(0.62 0.18 260 / 0.05), transparent 60%);
     background-attachment: fixed;
+  }
+
+  /* Premium horizontal carousels — smooth, momentum-based scroll */
+  [class*="overflow-x-auto"] {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
   }
 
   h1, h2, h3, h4 {

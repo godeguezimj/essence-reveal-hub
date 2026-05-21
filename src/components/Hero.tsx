@@ -32,8 +32,8 @@ export function Hero() {
         style={{ background: "radial-gradient(circle, oklch(0.62 0.18 260 / 0.14), transparent 70%)" }}
       />
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <div className="lg:col-span-7 animate-fade-up">
+      <div className="mx-auto max-w-4xl px-5 sm:px-6 lg:px-10 text-center">
+        <div className="animate-fade-up flex flex-col items-center">
           <div className="inline-flex items-center gap-2 glass-gold rounded-full px-4 py-1.5 mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-gold animate-shimmer" />
             <span className="text-[10px] sm:text-xs tracking-[0.22em] uppercase text-gold-soft font-medium">

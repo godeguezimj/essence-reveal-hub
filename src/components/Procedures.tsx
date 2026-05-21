@@ -1,5 +1,7 @@
 import { SectionHeading } from "./SectionHeading";
+import { NoseIcon } from "./NoseIcon";
 import { ArrowRight } from "lucide-react";
+
 
 const items = [
   {
@@ -45,9 +47,13 @@ export function Procedures() {
               key={item.title}
               className="glass rounded-3xl p-8 flex flex-col group hover:border-gold/40 transition-all duration-500 hover:-translate-y-1.5"
             >
-              <span className="text-xs text-gold tracking-widest">0{i + 1}</span>
+              <div className="flex items-start justify-between">
+                <span className="text-xs text-gold tracking-widest">0{i + 1}</span>
+                {item.title === "Rinoplastia" && <NoseIcon size={44} />}
+              </div>
               <h3 className="text-2xl mt-4 mb-4">{item.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed flex-1">{item.text}</p>
+
               <a
                 href="#avaliacao"
                 className="mt-7 inline-flex items-center gap-2 text-sm text-gold group-hover:gap-3 transition-all"

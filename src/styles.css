@@ -285,3 +285,16 @@
   50% { opacity: 0.9; }
 }
 .animate-shimmer { animation: shimmer 3s ease-in-out infinite; }
+
+@keyframes nose-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.animate-nose-float { animation: nose-float 4.5s ease-in-out infinite; }
+
+@keyframes nose-glow {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+.animate-nose-glow { animation: nose-glow 3.5s ease-in-out infinite; }
+

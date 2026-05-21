@@ -244,12 +244,16 @@ export function LeadForm() {
                   </StepQuestion>
                 )}
 
-                {step === 1 && (
-                  <StepQuestion title="O que mais te incomoda hoje?" hint="Escolha o que mais se aproxima do que você sente.">
-                    <ChoicesGrid options={incomodos} value={form.incomodo}
-                      onChange={(v) => { setForm({ ...form, incomodo: v }); setTimeout(goNext, 220); }} />
-                  </StepQuestion>
-                )}
+                {step === 1 && (() => {
+                  const cfg = incomodosPorProcedimento[form.procedimento as ProcedureKey];
+                  if (!cfg) return null;
+                  return (
+                    <StepQuestion title={cfg.title} hint={cfg.hint}>
+                      <ChoicesGrid options={cfg.options} value={form.incomodo}
+                        onChange={(v) => { setForm({ ...form, incomodo: v }); setTimeout(goNext, 220); }} />
+                    </StepQuestion>
+                  );
+                })()}
 
                 {step === 2 && (
                   <StepQuestion title="Quando pretende realizar?" hint="Sem compromisso — apenas para entendermos o seu momento.">

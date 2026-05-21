@@ -309,4 +309,12 @@
   animation: eye-blink 5s ease-in-out infinite;
 }
 
+@keyframes face-morph {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  33% { transform: scale(1.02) rotate(0.4deg); }
+  66% { transform: scale(0.99) rotate(-0.3deg); }
+}
+.animate-face-morph { animation: face-morph 7s ease-in-out infinite; }
+
+
 

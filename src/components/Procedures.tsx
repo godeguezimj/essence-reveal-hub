@@ -2,6 +2,8 @@ import { SectionHeading } from "./SectionHeading";
 import { NoseIcon } from "./NoseIcon";
 import { EyeIcon } from "./EyeIcon";
 import { FaceIcon } from "./FaceIcon";
+import { PlanIcon } from "./PlanIcon";
+
 
 
 import { ArrowRight } from "lucide-react";
@@ -56,6 +58,8 @@ export function Procedures() {
                 {item.title === "Rinoplastia" && <NoseIcon size={44} />}
                 {item.title === "Blefaroplastia" && <EyeIcon size={44} />}
                 {item.title === "Harmonização Facial" && <FaceIcon size={44} />}
+                {item.title === "Planejamento Personalizado" && <PlanIcon size={44} />}
+
 
 
               </div>

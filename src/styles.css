@@ -105,6 +105,8 @@
     background: var(--background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: 0.005em;
     -webkit-font-smoothing: antialiased;
     background-image:
       radial-gradient(ellipse at top right, oklch(0.48 0.22 263 / 0.06), transparent 55%),
@@ -114,10 +116,18 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.015em;
+    font-weight: 400;
+    letter-spacing: -0.02em;
     color: var(--royal-deep);
   }
+
+  h1 { font-weight: 400; }
+  h2 { font-weight: 500; }
+
+  /* Editorial italic accent already used via .italic in markup */
+  .font-display { font-family: var(--font-display); }
+  .font-serif-alt { font-family: var(--font-serif-alt); }
+
 
   /* Inverted text colors inside royal sections */
   .on-royal, .on-royal h1, .on-royal h2, .on-royal h3, .on-royal h4 {

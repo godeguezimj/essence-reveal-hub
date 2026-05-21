@@ -278,7 +278,7 @@ export function LeadForm() {
                         label="WhatsApp"
                         type="tel"
                         value={form.whatsapp}
-                        onChange={(v) => setForm({ ...form, whatsapp: v })}
+                        onChange={(v) => setForm({ ...form, whatsapp: formatWhatsapp(v) })}
                         placeholder="(00) 00000-0000"
                         autoComplete="tel"
                       />

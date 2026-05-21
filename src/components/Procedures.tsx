@@ -1,6 +1,8 @@
 import { SectionHeading } from "./SectionHeading";
 import { NoseIcon } from "./NoseIcon";
 import { EyeIcon } from "./EyeIcon";
+import { FaceIcon } from "./FaceIcon";
+
 
 import { ArrowRight } from "lucide-react";
 
@@ -53,6 +55,8 @@ export function Procedures() {
                 <span className="text-xs text-gold tracking-widest">0{i + 1}</span>
                 {item.title === "Rinoplastia" && <NoseIcon size={44} />}
                 {item.title === "Blefaroplastia" && <EyeIcon size={44} />}
+                {item.title === "Harmonização Facial" && <FaceIcon size={44} />}
+
 
               </div>
               <h3 className="text-2xl mt-4 mb-4">{item.title}</h3>

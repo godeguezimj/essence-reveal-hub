@@ -1,5 +1,4 @@
 import { Sparkles, ShieldCheck, HeartHandshake, Stethoscope, ArrowRight, Check } from "lucide-react";
-import { FaceComposition } from "./FaceComposition";
 
 const trust = [
   { icon: Sparkles, label: "Planejamento exclusivo" },

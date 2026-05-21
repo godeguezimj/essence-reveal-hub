@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { PainSection } from "@/components/PainSection";
 import { Procedures } from "@/components/Procedures";
 import { ProcedureSpotlight } from "@/components/ProcedureSpotlight";
+import { Results } from "@/components/Results";
 import { LeadForm } from "@/components/LeadForm";
 import { Timeline } from "@/components/Timeline";
 import { About } from "@/components/About";
@@ -12,7 +13,6 @@ import { Testimonials } from "@/components/Testimonials";
 import { Faq } from "@/components/Faq";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
-import rinoImg from "@/assets/rinoplastia.jpg";
 import blefaroImg from "@/assets/blefaroplastia.jpg";
 
 export const Route = createFileRoute("/")({
@@ -34,20 +34,7 @@ function Index() {
       <Hero />
       <PainSection />
       <Procedures />
-      <ProcedureSpotlight
-        image={rinoImg}
-        eyebrow="Rinoplastia"
-        title={<>Rinoplastia: harmonia facial com <span className="text-gradient-gold italic">naturalidade</span></>}
-        text="A rinoplastia é indicada para quem deseja melhorar a estética do nariz, suavizar a giba óssea, corrigir assimetrias, ajustar a ponta nasal ou buscar mais equilíbrio entre os traços do rosto. Em alguns casos, também pode contribuir para melhora respiratória."
-        points={[
-          "Planejamento individual",
-          "Resultado natural",
-          "Harmonia com o rosto",
-          "Avaliação funcional e estética",
-          "Acompanhamento especializado",
-        ]}
-        cta="Agendar avaliação para rinoplastia"
-      />
+      <Results />
       <ProcedureSpotlight
         image={blefaroImg}
         eyebrow="Blefaroplastia"

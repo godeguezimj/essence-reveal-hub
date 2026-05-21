@@ -3,32 +3,36 @@ import { NoseIcon } from "./NoseIcon";
 import { EyeIcon } from "./EyeIcon";
 import { FaceIcon } from "./FaceIcon";
 import { PlanIcon } from "./PlanIcon";
-
-
-
-import { ArrowRight } from "lucide-react";
-
+import { ArrowUpRight } from "lucide-react";
 
 const items = [
   {
     title: "Rinoplastia",
-    text: "Indicada para quem deseja harmonizar o formato do nariz, melhorar proporções faciais e, em alguns casos, auxiliar na função respiratória.",
-    cta: "Quero saber sobre rinoplastia",
+    tagline: "Harmonia e proporção facial",
+    text: "Refinamento do formato do nariz, com foco em equilíbrio e naturalidade.",
+    cta: "Saber mais",
+    Icon: NoseIcon,
   },
   {
     title: "Blefaroplastia",
-    text: "Indicada para quem se incomoda com pálpebras caídas, excesso de pele, bolsas abaixo dos olhos ou aparência constante de cansaço.",
-    cta: "Quero saber sobre blefaroplastia",
+    tagline: "Olhar mais leve e descansado",
+    text: "Correção de pálpebras caídas, bolsas e sinais de cansaço.",
+    cta: "Saber mais",
+    Icon: EyeIcon,
   },
   {
     title: "Harmonização Facial",
-    text: "Procedimentos planejados para equilibrar traços faciais, valorizar contornos e preservar a naturalidade.",
-    cta: "Quero saber mais",
+    tagline: "Contornos em equilíbrio",
+    text: "Procedimentos que valorizam traços e preservam a naturalidade.",
+    cta: "Saber mais",
+    Icon: FaceIcon,
   },
   {
     title: "Planejamento Personalizado",
-    text: "Uma avaliação individual para entender o que faz sentido para o seu caso, seus objetivos e sua segurança.",
-    cta: "Quero minha avaliação",
+    tagline: "Avaliação individual",
+    text: "Um plano único para o seu caso, objetivos e segurança.",
+    cta: "Agendar avaliação",
+    Icon: PlanIcon,
   },
 ];
 
@@ -47,33 +51,57 @@ export function Procedures() {
           subtitle="Cada caso é avaliado de forma individual, respeitando sua anatomia, seus objetivos e a harmonia do seu rosto."
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-          {items.map((item, i) => (
-            <div
-              key={item.title}
-              className="glass rounded-3xl p-8 flex flex-col group hover:border-gold/40 transition-all duration-500 hover:-translate-y-1.5"
-            >
-              <div className="flex items-start justify-between">
-                <span className="text-xs text-gold tracking-widest">0{i + 1}</span>
-                {item.title === "Rinoplastia" && <NoseIcon size={44} />}
-                {item.title === "Blefaroplastia" && <EyeIcon size={44} />}
-                {item.title === "Harmonização Facial" && <FaceIcon size={44} />}
-                {item.title === "Planejamento Personalizado" && <PlanIcon size={44} />}
-
-
-
-              </div>
-              <h3 className="text-2xl mt-4 mb-4">{item.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed flex-1">{item.text}</p>
-
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7 mt-16">
+          {items.map((item, i) => {
+            const { Icon } = item;
+            return (
               <a
+                key={item.title}
                 href="#avaliacao"
-                className="mt-7 inline-flex items-center gap-2 text-sm text-gold group-hover:gap-3 transition-all"
+                className="procedure-card group relative rounded-[1.75rem] p-9 lg:p-10 flex flex-col cursor-pointer overflow-hidden"
               >
-                {item.cta} <ArrowRight size={14} />
+                {/* Glow halo */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-px rounded-[1.75rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at top, oklch(0.48 0.22 263 / 0.18), transparent 65%)",
+                  }}
+                />
+
+                <div className="relative flex items-start justify-between mb-8">
+                  <span className="text-[10px] text-royal tracking-[0.3em] uppercase font-medium pt-2">
+                    0{i + 1}
+                  </span>
+                  <span className="transition-transform duration-700 ease-out group-hover:scale-110">
+                    <Icon size={58} />
+                  </span>
+                </div>
+
+                <div className="relative flex-1">
+                  <h3 className="font-display text-2xl lg:text-[1.7rem] leading-tight tracking-tight">
+                    {item.title}
+                  </h3>
+                  <div className="h-px w-10 bg-royal/30 my-4 transition-all duration-500 group-hover:w-16 group-hover:bg-royal/60" />
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-royal/70 mb-3">
+                    {item.tagline}
+                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+
+                <div className="relative mt-8 inline-flex items-center gap-2 self-start rounded-full border border-royal/20 bg-white/60 px-4 py-2 text-xs font-medium text-royal-deep transition-all duration-500 group-hover:bg-royal group-hover:text-white group-hover:border-royal group-hover:shadow-[0_8px_24px_-8px_oklch(0.48_0.22_263/0.5)]">
+                  {item.cta}
+                  <ArrowUpRight
+                    size={14}
+                    className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </div>
               </a>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

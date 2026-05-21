@@ -87,7 +87,8 @@ export function Hero() {
 
           {/* Trust badges — horizontal scroll on mobile, grid on desktop */}
           <div className="mt-10 -mx-5 sm:mx-0">
-            <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3 overflow-x-auto sm:overflow-visible px-5 sm:px-0 snap-x snap-mandatory scrollbar-none">
+            <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3 overflow-x-auto sm:overflow-visible px-5 sm:px-0 py-2 snap-x snap-mandatory scroll-px-5 scrollbar-none">
+
               {trust.map((t) => (
                 <div
                   key={t.label}

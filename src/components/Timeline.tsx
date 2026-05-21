@@ -197,7 +197,7 @@ export function Timeline() {
         >
           <div
             ref={trackRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none -mx-5 px-5 pb-2"
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-px-5 scrollbar-none -mx-5 px-5 py-3"
             onScroll={(e) => {
               const el = e.currentTarget;
               const w = el.children[0] as HTMLElement | undefined;

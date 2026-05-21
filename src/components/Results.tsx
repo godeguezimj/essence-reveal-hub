@@ -270,9 +270,10 @@ export function Results() {
             style={{ background: "linear-gradient(270deg, var(--background), transparent)" }}
           />
 
-          {/* Track */}
+          {/* Track — clip horizontally only so card shadows can breathe vertically */}
           <div
-            className="overflow-hidden rounded-[2rem]"
+            className="rounded-[2rem] py-4"
+            style={{ overflowX: "clip", overflowY: "visible" }}
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
           >

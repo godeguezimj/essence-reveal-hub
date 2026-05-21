@@ -1,11 +1,17 @@
 import heroImg from "@/assets/hero-woman.jpg";
-import { Sparkles, ShieldCheck, HeartHandshake, Stethoscope, ArrowRight } from "lucide-react";
+import { Sparkles, ShieldCheck, HeartHandshake, Stethoscope, ArrowRight, Check } from "lucide-react";
 
 const trust = [
-  { icon: Sparkles, label: "Planejamento individual" },
-  { icon: Stethoscope, label: "Atendimento especializado" },
-  { icon: HeartHandshake, label: "Resultado natural" },
+  { icon: Sparkles, label: "Planejamento exclusivo" },
+  { icon: HeartHandshake, label: "Atendimento humanizado" },
+  { icon: Stethoscope, label: "Resultado natural" },
   { icon: ShieldCheck, label: "Acompanhamento completo" },
+];
+
+const microcopy = [
+  "Avaliação personalizada",
+  "Atendimento premium",
+  "Procedimentos planejados individualmente",
 ];
 
 export function Hero() {
@@ -37,14 +43,14 @@ export function Hero() {
           </div>
 
           <h1 className="text-[2.25rem] sm:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-tight">
-            Realce sua beleza com{" "}
-            <span className="text-gradient-gold italic">naturalidade</span>,
-            segurança e planejamento personalizado
+            Sinta-se mais confortável com a sua imagem,{" "}
+            <span className="text-gradient-gold italic">sem perder</span> sua
+            naturalidade
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed">
-            Procedimentos faciais individuais que valorizam seus traços e
-            respeitam sua essência.
+            Cada procedimento é planejado para valorizar seus traços com
+            equilíbrio, sofisticação e naturalidade.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
@@ -52,7 +58,7 @@ export function Hero() {
               href="#avaliacao"
               className="btn-gold group px-7 py-4 rounded-full text-sm font-medium inline-flex items-center justify-center gap-2"
             >
-              Quero agendar minha avaliação
+              Quero entender meu caso
               <ArrowRight
                 size={16}
                 className="transition-transform duration-300 group-hover:translate-x-1"
@@ -62,9 +68,22 @@ export function Hero() {
               href="#procedimentos"
               className="btn-outline-gold px-7 py-4 rounded-full text-sm font-medium text-center"
             >
-              Conhecer procedimentos
+              Ver possibilidades para meu caso
             </a>
           </div>
+
+          {/* Microcopy — reassurance under CTAs */}
+          <ul className="mt-5 flex flex-col sm:flex-row sm:flex-wrap gap-y-2 gap-x-5">
+            {microcopy.map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-2 text-xs sm:text-[13px] text-foreground/75"
+              >
+                <Check size={14} className="text-royal shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
 
           {/* Trust badges — horizontal scroll on mobile, grid on desktop */}
           <div className="mt-10 -mx-5 sm:mx-0">
@@ -118,9 +137,11 @@ export function Hero() {
                 </div>
                 <div>
                   <p className="text-[10px] text-royal uppercase tracking-[0.22em] font-medium">
-                    Compromisso
+                    Experiência premium
                   </p>
-                  <p className="text-sm text-royal-deep">Segurança em cada etapa</p>
+                  <p className="text-sm text-royal-deep">
+                    Naturalidade, segurança e acompanhamento próximo
+                  </p>
                 </div>
               </div>
             </div>

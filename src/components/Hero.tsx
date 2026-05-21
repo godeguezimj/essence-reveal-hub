@@ -1,5 +1,5 @@
-import heroImg from "@/assets/hero-woman.jpg";
 import { Sparkles, ShieldCheck, HeartHandshake, Stethoscope, ArrowRight, Check } from "lucide-react";
+import { FaceComposition } from "./FaceComposition";
 
 const trust = [
   { icon: Sparkles, label: "Planejamento exclusivo" },
@@ -107,46 +107,7 @@ export function Hero() {
         </div>
 
         <div className="lg:col-span-5 relative animate-fade-up">
-          {/* Cinematic glow halo */}
-          <div
-            aria-hidden
-            className="absolute -inset-10 rounded-[3rem] blur-3xl opacity-70 animate-hero-glow"
-            style={{
-              background:
-                "radial-gradient(ellipse at 30% 20%, oklch(0.48 0.22 263 / 0.35), transparent 60%), radial-gradient(ellipse at 70% 80%, oklch(0.62 0.18 260 / 0.25), transparent 65%)",
-            }}
-          />
-          <div className="relative animate-hero-float-img">
-            <div
-              className="relative glass rounded-[2rem] p-3 overflow-hidden"
-              style={{
-                boxShadow:
-                  "0 40px 90px -30px oklch(0.32 0.18 265 / 0.45), 0 0 0 1px oklch(0.48 0.22 263 / 0.08), 0 0 60px -10px oklch(0.48 0.22 263 / 0.2)",
-              }}
-            >
-              <img
-                src={heroImg}
-                alt="Paciente em ambiente clínico premium da Full Plástica"
-                width={1024}
-                height={1280}
-                className="rounded-[1.5rem] w-full h-[440px] sm:h-[520px] lg:h-[600px] object-cover"
-              />
-              <div className="absolute inset-3 rounded-[1.5rem] pointer-events-none ring-1 ring-white/20" />
-              <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8 bg-white/95 backdrop-blur-md border border-royal/15 rounded-2xl px-5 py-4 flex items-center gap-3 shadow-[0_18px_40px_-15px_oklch(0.32_0.18_265/0.45)]">
-                <div className="h-10 w-10 rounded-full bg-royal/10 grid place-items-center">
-                  <ShieldCheck size={18} className="text-royal" />
-                </div>
-                <div>
-                  <p className="text-[10px] text-royal uppercase tracking-[0.22em] font-medium">
-                    Experiência premium
-                  </p>
-                  <p className="text-sm text-royal-deep">
-                    Naturalidade, segurança e acompanhamento próximo
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <FaceComposition />
         </div>
       </div>
     </section>

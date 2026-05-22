@@ -11,13 +11,13 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="pt-20 pb-10 border-t border-royal/10 bg-white/60">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid lg:grid-cols-4 gap-10">
-          <div className="lg:col-span-2">
+    <footer className="pt-16 sm:pt-20 pb-10 border-t border-royal/10 bg-white/60">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="sm:col-span-2">
             <div
               aria-label="Full Plástica"
-              className="h-28 w-[28rem]"
+              className="h-20 sm:h-24 lg:h-28 w-full max-w-[20rem] sm:max-w-[24rem] lg:max-w-[28rem]"
               style={{
                 backgroundColor: "var(--royal)",
                 WebkitMaskImage: `url(${logo})`,
@@ -35,15 +35,16 @@ export function Footer() {
               Clínica de cirurgia plástica com foco em naturalidade, segurança e
               planejamento individualizado para cada paciente.
             </p>
-            <div className="mt-6 flex gap-3">
-              <a href="https://wa.me/" target="_blank" rel="noreferrer" className="btn-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium">
+            <div className="mt-6 flex flex-col sm:flex-row gap-3">
+              <a href="https://wa.me/" target="_blank" rel="noreferrer" className="btn-gold inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-medium">
                 <MessageCircle size={15} /> WhatsApp
               </a>
-              <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="btn-outline-gold inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium">
+              <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="btn-outline-gold inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-medium">
                 <Instagram size={15} /> Instagram
               </a>
             </div>
           </div>
+
 
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-gold mb-5">Navegação</p>

@@ -55,12 +55,13 @@ export function PainSection() {
           subtitle="Cada procedimento é pensado para trazer mais harmonia, confiança e naturalidade."
         />
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mt-16">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 mt-12 sm:mt-16">
           {cards.map((c) => (
             <div
               key={c.title}
-              className="pain-card group relative rounded-[1.75rem] p-9 lg:p-10 overflow-hidden"
+              className="pain-card group relative rounded-[1.5rem] sm:rounded-[1.75rem] p-7 sm:p-9 lg:p-10 overflow-hidden"
             >
+
               <span
                 aria-hidden
                 className="pointer-events-none absolute -inset-px rounded-[1.75rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700"

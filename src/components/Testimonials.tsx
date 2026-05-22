@@ -9,8 +9,9 @@ const items = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section className="py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
+
         <SectionHeading
           eyebrow="Depoimentos"
           title={

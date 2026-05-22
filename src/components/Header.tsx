@@ -29,14 +29,15 @@ export function Header() {
           : "bg-white/70 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between h-24 md:h-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 flex items-center justify-between h-16 sm:h-20 md:h-24 lg:h-28">
         <a href="#inicio" className="flex items-center gap-2" aria-label="Full Plástica">
           <img
             src={logoAzul}
             alt="Full Plástica"
-            className="h-16 md:h-20 lg:h-24 w-auto object-contain"
+            className="h-10 sm:h-14 md:h-20 lg:h-24 w-auto object-contain"
           />
         </a>
+
 
         <nav className="hidden lg:flex items-center gap-9">
           {links.map((l) => (

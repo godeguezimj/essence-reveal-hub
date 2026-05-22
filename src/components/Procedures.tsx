@@ -82,7 +82,7 @@ export function Procedures() {
                 </div>
 
                 <div className="relative flex-1">
-                  <h3 className="font-display text-2xl lg:text-[1.7rem] leading-tight tracking-tight">
+                  <h3 className="font-display text-xl sm:text-2xl lg:text-[1.7rem] leading-tight tracking-tight">
                     {item.title}
                   </h3>
                   <div className="h-px w-10 bg-royal/30 my-4 transition-all duration-500 group-hover:w-16 group-hover:bg-royal/60" />

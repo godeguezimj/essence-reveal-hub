@@ -68,13 +68,13 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden glass border-t border-white/10 px-6 py-6 space-y-4">
+        <div className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-royal/10 px-5 sm:px-6 py-6 space-y-1 shadow-[0_12px_30px_-18px_oklch(0.32_0.18_265/0.35)]">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block text-foreground/90 hover:text-gold transition-colors"
+              className="block py-3 text-base text-royal-deep/90 hover:text-royal transition-colors"
             >
               {l.label}
             </a>
@@ -82,12 +82,13 @@ export function Header() {
           <a
             href="#avaliacao"
             onClick={() => setOpen(false)}
-            className="btn-gold inline-flex px-5 py-2.5 rounded-full text-sm font-medium"
+            className="btn-gold mt-4 w-full inline-flex items-center justify-center px-5 py-3.5 rounded-full text-sm font-medium"
           >
             Falar com especialista
           </a>
         </div>
       )}
+
     </header>
   );
 }

@@ -344,8 +344,9 @@ export function LeadForm() {
           background: oklch(0.985 0.008 250);
           border: 1px solid oklch(0.48 0.22 263 / 0.16);
           color: var(--color-foreground);
-          padding: 0.95rem 1.1rem 0.95rem 2.85rem;
+          padding: 1.05rem 1.1rem 1.05rem 2.85rem;
           border-radius: 1rem;
+          font-size: 16px;
           transition: all 0.35s cubic-bezier(.2,.7,.2,1);
         }
         .input-elegant:focus {
@@ -355,6 +356,7 @@ export function LeadForm() {
           box-shadow: 0 0 0 6px oklch(0.48 0.22 263 / 0.10);
         }
         .input-elegant::placeholder { color: oklch(0.62 0.03 255); }
+
 
         @keyframes step-in {
           from { opacity: 0; transform: translateX(14px); filter: blur(2px); }

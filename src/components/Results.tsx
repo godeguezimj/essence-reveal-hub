@@ -240,7 +240,7 @@ export function Results() {
               Resultados reais
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[3rem] leading-[1.08]">
+          <h2 className="text-[1.75rem] sm:text-4xl lg:text-[3rem] leading-[1.12] sm:leading-[1.08]">
             Resultados naturais que{" "}
             <span className="text-gradient-gold italic">realçam</span> o que você
             tem de melhor

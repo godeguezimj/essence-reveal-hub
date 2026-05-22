@@ -12,8 +12,9 @@ const items = [
 
 export function About() {
   return (
-    <section id="sobre" className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="sobre" className="py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
+
         <SectionHeading
           eyebrow="Sobre a Full Plástica"
           title={

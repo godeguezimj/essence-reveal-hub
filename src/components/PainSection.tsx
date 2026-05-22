@@ -91,7 +91,7 @@ export function PainSection() {
                   <c.icon size={24} className="relative text-royal" strokeWidth={1.4} />
                 </div>
 
-                <h3 className="font-display text-2xl lg:text-[1.6rem] leading-tight tracking-tight">
+                <h3 className="font-display text-xl sm:text-2xl lg:text-[1.6rem] leading-tight tracking-tight">
                   {c.title}
                 </h3>
                 <div className="h-px w-10 bg-royal/25 my-4 transition-all duration-500 group-hover:w-16 group-hover:bg-royal/60" />

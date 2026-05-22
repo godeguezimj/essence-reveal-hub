@@ -27,7 +27,7 @@ const trustSignals = [
 
 export function PainSection() {
   return (
-    <section className="py-28 lg:py-36 relative overflow-hidden">
+    <section className="py-20 sm:py-24 lg:py-36 relative overflow-hidden">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div
           className="absolute -top-20 -left-20 h-[28rem] w-[28rem] rounded-full blur-3xl opacity-60 animate-pain-float"

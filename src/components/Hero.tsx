@@ -17,39 +17,39 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative pt-28 sm:pt-32 lg:pt-40 pb-16 sm:pb-20 overflow-hidden"
+      className="relative pt-24 sm:pt-32 lg:pt-40 pb-14 sm:pb-20 overflow-hidden"
     >
       {/* Organic background glows */}
       <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-glow)" }} />
       <div
         aria-hidden
-        className="absolute -z-10 top-[-8rem] right-[-6rem] w-[28rem] h-[28rem] rounded-full blur-3xl opacity-50 animate-hero-float"
+        className="absolute -z-10 top-[-8rem] right-[-6rem] w-[22rem] sm:w-[28rem] h-[22rem] sm:h-[28rem] rounded-full blur-3xl opacity-50 animate-hero-float"
         style={{ background: "radial-gradient(circle, oklch(0.48 0.22 263 / 0.18), transparent 70%)" }}
       />
       <div
         aria-hidden
-        className="absolute -z-10 bottom-[-6rem] left-[-4rem] w-[24rem] h-[24rem] rounded-full blur-3xl opacity-50 animate-hero-float-2"
+        className="absolute -z-10 bottom-[-6rem] left-[-4rem] w-[20rem] sm:w-[24rem] h-[20rem] sm:h-[24rem] rounded-full blur-3xl opacity-50 animate-hero-float-2"
         style={{ background: "radial-gradient(circle, oklch(0.62 0.18 260 / 0.14), transparent 70%)" }}
       />
 
       <div className="mx-auto max-w-4xl px-5 sm:px-6 lg:px-10 text-center">
         <div className="animate-fade-up flex flex-col items-center">
 
-          <h1 className="text-[2.25rem] sm:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-tight">
+          <h1 className="text-[2rem] sm:text-5xl lg:text-[3.75rem] leading-[1.08] sm:leading-[1.02] tracking-tight">
             Sinta-se mais confortável com a sua imagem,{" "}
             <span className="text-gradient-gold italic">sem perder</span> sua
             naturalidade
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed">
+          <p className="mt-5 sm:mt-6 text-[15px] sm:text-lg text-muted-foreground max-w-xl leading-relaxed">
             Cada procedimento é planejado para valorizar seus traços com
             equilíbrio, sofisticação e naturalidade.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
+          <div className="mt-7 sm:mt-8 w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-center gap-3 sm:gap-4">
             <a
               href="#avaliacao"
-              className="btn-gold group px-7 py-4 rounded-full text-sm font-medium inline-flex items-center justify-center gap-2"
+              className="btn-gold group w-full sm:w-auto min-h-[52px] px-7 py-4 rounded-full text-sm font-medium inline-flex items-center justify-center gap-2"
             >
               Quero entender meu caso
               <ArrowRight
@@ -59,11 +59,12 @@ export function Hero() {
             </a>
             <a
               href="#procedimentos"
-              className="btn-outline-gold px-7 py-4 rounded-full text-sm font-medium text-center"
+              className="btn-outline-gold w-full sm:w-auto min-h-[52px] px-7 py-4 rounded-full text-sm font-medium inline-flex items-center justify-center"
             >
               Ver possibilidades para meu caso
             </a>
           </div>
+
 
           {/* Microcopy — reassurance under CTAs */}
           <ul className="mt-5 flex flex-col sm:flex-row sm:flex-wrap gap-y-2 gap-x-5">

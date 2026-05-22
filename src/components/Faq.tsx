@@ -15,8 +15,9 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="duvidas" className="py-24 lg:py-32">
-      <div className="mx-auto max-w-4xl px-6 lg:px-10">
+    <section id="duvidas" className="py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-4xl px-5 sm:px-6 lg:px-10">
+
         <SectionHeading
           eyebrow="FAQ"
           title={
@@ -26,7 +27,7 @@ export function Faq() {
           }
         />
 
-        <div className="mt-14 space-y-4">
+        <div className="mt-10 sm:mt-14 space-y-3 sm:space-y-4">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
@@ -38,19 +39,20 @@ export function Faq() {
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-6 text-left p-6"
+                  className="w-full flex items-center justify-between gap-4 sm:gap-6 text-left p-5 sm:p-6 min-h-[64px]"
                 >
-                  <span className="text-base sm:text-lg font-medium text-foreground">{f.q}</span>
+                  <span className="text-[15px] sm:text-lg font-medium text-foreground leading-snug">{f.q}</span>
                   <span className="h-9 w-9 rounded-full glass-gold grid place-items-center shrink-0 text-gold">
                     {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-6 text-muted-foreground leading-relaxed text-sm">
+                  <div className="px-5 sm:px-6 pb-5 sm:pb-6 text-muted-foreground leading-relaxed text-sm">
                     {f.a}
                   </div>
                 )}
               </div>
+
             );
           })}
         </div>

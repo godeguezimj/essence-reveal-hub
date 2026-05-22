@@ -162,7 +162,7 @@ export function LeadForm() {
   };
 
   return (
-    <section id="avaliacao" className="py-24 lg:py-32 relative section-tint overflow-hidden">
+    <section id="avaliacao" className="py-20 sm:py-24 lg:py-32 relative section-tint overflow-hidden">
       {/* soft glows */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 left-1/3 h-[420px] w-[420px] rounded-full blur-3xl opacity-50"
@@ -171,7 +171,7 @@ export function LeadForm() {
           style={{ background: "radial-gradient(closest-side, oklch(0.48 0.22 263 / 0.14), transparent)" }} />
       </div>
 
-      <div className="mx-auto max-w-3xl px-6 lg:px-10 relative">
+      <div className="mx-auto max-w-3xl px-5 sm:px-6 lg:px-10 relative">
         <SectionHeading
           eyebrow="Pré-avaliação"
           title={
@@ -196,9 +196,10 @@ export function LeadForm() {
         </ul>
 
         {/* Card */}
-        <div className="mt-12 relative">
-          <div aria-hidden className="absolute -inset-px rounded-[2rem] bg-gradient-to-b from-royal/15 via-transparent to-royal/10 blur-[1px]" />
-          <div className="relative bg-white rounded-[1.85rem] border border-royal/10 shadow-[0_30px_80px_-30px_oklch(0.32_0.18_265/0.30)] p-7 sm:p-10 lg:p-12">
+        <div className="mt-10 sm:mt-12 relative">
+          <div aria-hidden className="absolute -inset-px rounded-[1.5rem] sm:rounded-[2rem] bg-gradient-to-b from-royal/15 via-transparent to-royal/10 blur-[1px]" />
+          <div className="relative bg-white rounded-[1.4rem] sm:rounded-[1.85rem] border border-royal/10 shadow-[0_30px_80px_-30px_oklch(0.32_0.18_265/0.30)] p-5 sm:p-10 lg:p-12">
+
             {/* Progress */}
             <div className="flex items-center justify-between mb-6">
               <div className="text-xs uppercase tracking-[0.22em] text-royal/80">
@@ -298,12 +299,12 @@ export function LeadForm() {
               </div>
 
               {/* Nav */}
-              <div className="mt-10 flex items-center justify-between gap-4">
+              <div className="mt-8 sm:mt-10 flex flex-col-reverse sm:flex-row items-stretch sm:items-center sm:justify-between gap-3 sm:gap-4">
                 <button
                   type="button"
                   onClick={goBack}
                   disabled={step === 0}
-                  className="inline-flex items-center gap-2 text-sm text-foreground/70 hover:text-royal disabled:opacity-0 transition-all"
+                  className="inline-flex items-center justify-center sm:justify-start gap-2 text-sm text-foreground/70 hover:text-royal disabled:opacity-0 transition-all min-h-[44px]"
                 >
                   <ArrowLeft className="h-4 w-4" /> Voltar
                 </button>
@@ -312,19 +313,20 @@ export function LeadForm() {
                   <button
                     type="button"
                     onClick={goNext}
-                    className="btn-gold inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium"
+                    className="btn-gold inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[54px] px-7 py-3.5 rounded-full text-sm font-medium"
                   >
                     Continuar <ArrowRight className="h-4 w-4" />
                   </button>
                 ) : (
                   <button
                     type="submit"
-                    className="btn-gold inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium"
+                    className="btn-gold inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[54px] px-7 py-3.5 rounded-full text-sm font-medium"
                   >
                     Receber avaliação personalizada <ArrowRight className="h-4 w-4" />
                   </button>
                 )}
               </div>
+
 
               {step === total - 1 && (
                 <p className="text-xs text-muted-foreground mt-5 text-center sm:text-left">
@@ -342,8 +344,9 @@ export function LeadForm() {
           background: oklch(0.985 0.008 250);
           border: 1px solid oklch(0.48 0.22 263 / 0.16);
           color: var(--color-foreground);
-          padding: 0.95rem 1.1rem 0.95rem 2.85rem;
+          padding: 1.05rem 1.1rem 1.05rem 2.85rem;
           border-radius: 1rem;
+          font-size: 16px;
           transition: all 0.35s cubic-bezier(.2,.7,.2,1);
         }
         .input-elegant:focus {
@@ -353,6 +356,7 @@ export function LeadForm() {
           box-shadow: 0 0 0 6px oklch(0.48 0.22 263 / 0.10);
         }
         .input-elegant::placeholder { color: oklch(0.62 0.03 255); }
+
 
         @keyframes step-in {
           from { opacity: 0; transform: translateX(14px); filter: blur(2px); }

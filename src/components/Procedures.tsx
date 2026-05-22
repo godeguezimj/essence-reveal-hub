@@ -38,8 +38,9 @@ const items = [
 
 export function Procedures() {
   return (
-    <section id="procedimentos" className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="procedimentos" className="py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
+
         <SectionHeading
           eyebrow="Procedimentos"
           title={
@@ -51,15 +52,16 @@ export function Procedures() {
           subtitle="Cada caso é avaliado de forma individual, respeitando sua anatomia, seus objetivos e a harmonia do seu rosto."
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7 mt-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-7 mt-12 sm:mt-16">
           {items.map((item, i) => {
             const { Icon } = item;
             return (
               <a
                 key={item.title}
                 href="#avaliacao"
-                className="procedure-card group relative rounded-[1.75rem] p-9 lg:p-10 flex flex-col cursor-pointer overflow-hidden"
+                className="procedure-card group relative rounded-[1.5rem] sm:rounded-[1.75rem] p-7 sm:p-9 lg:p-10 flex flex-col cursor-pointer overflow-hidden"
               >
+
                 {/* Glow halo */}
                 <span
                   aria-hidden
@@ -80,7 +82,7 @@ export function Procedures() {
                 </div>
 
                 <div className="relative flex-1">
-                  <h3 className="font-display text-2xl lg:text-[1.7rem] leading-tight tracking-tight">
+                  <h3 className="font-display text-xl sm:text-2xl lg:text-[1.7rem] leading-tight tracking-tight">
                     {item.title}
                   </h3>
                   <div className="h-px w-10 bg-royal/30 my-4 transition-all duration-500 group-hover:w-16 group-hover:bg-royal/60" />

@@ -9,8 +9,9 @@ const items = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section className="py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
+
         <SectionHeading
           eyebrow="Depoimentos"
           title={
@@ -20,9 +21,10 @@ export function Testimonials() {
           }
         />
 
-        <div className="grid md:grid-cols-3 gap-6 mt-16">
+        <div className="grid md:grid-cols-3 gap-5 sm:gap-6 mt-12 sm:mt-16">
           {items.map((t, i) => (
-            <div key={i} className="glass rounded-3xl p-8 relative">
+            <div key={i} className="glass rounded-2xl sm:rounded-3xl p-7 sm:p-8 relative">
+
               <Quote size={32} className="text-gold/40 mb-5" />
               <p className="text-foreground/90 leading-relaxed italic">"{t.text}"</p>
               <div className="divider-gold my-6 w-16" />

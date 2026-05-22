@@ -218,7 +218,7 @@ export function Results() {
   };
 
   return (
-    <section id="resultados" className="relative py-24 lg:py-32 overflow-hidden">
+    <section id="resultados" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden">
       {/* Background glows */}
       <div
         aria-hidden
@@ -240,7 +240,7 @@ export function Results() {
               Resultados reais
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[3rem] leading-[1.08]">
+          <h2 className="text-[1.75rem] sm:text-4xl lg:text-[3rem] leading-[1.12] sm:leading-[1.08]">
             Resultados naturais que{" "}
             <span className="text-gradient-gold italic">realçam</span> o que você
             tem de melhor
@@ -258,17 +258,18 @@ export function Results() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {/* Side fades */}
+          {/* Side fades — hidden on mobile to let cards breathe */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-20 z-10"
+            className="pointer-events-none absolute inset-y-0 left-0 w-0 sm:w-20 z-10 hidden sm:block"
             style={{ background: "linear-gradient(90deg, var(--background), transparent)" }}
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-20 z-10"
+            className="pointer-events-none absolute inset-y-0 right-0 w-0 sm:w-20 z-10 hidden sm:block"
             style={{ background: "linear-gradient(270deg, var(--background), transparent)" }}
           />
+
 
           {/* Track — clip horizontally only so card shadows can breathe vertically */}
           <div
@@ -293,7 +294,7 @@ export function Results() {
           </div>
 
           {/* Controls — dots + progress */}
-          <div className="mt-7 flex items-center justify-between gap-6">
+          <div className="mt-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
             <div className="flex items-center gap-2.5">
               {results.map((r, i) => (
                 <button
@@ -309,7 +310,7 @@ export function Results() {
               ))}
             </div>
 
-            <div className="flex items-center gap-3 flex-1 max-w-[16rem]">
+            <div className="flex items-center gap-3 w-full sm:flex-1 sm:max-w-[16rem]">
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
                   paused ? "bg-royal/30" : "bg-royal animate-shimmer"
@@ -347,7 +348,7 @@ export function Results() {
 
         {/* Final CTA */}
         <div
-          className="mt-12 sm:mt-14 relative overflow-hidden rounded-[1.75rem] p-8 sm:p-12 text-center"
+          className="mt-12 sm:mt-14 relative overflow-hidden rounded-[1.5rem] sm:rounded-[1.75rem] p-7 sm:p-12 text-center"
           style={{
             background:
               "linear-gradient(180deg, oklch(1 0 0 / 0.7) 0%, oklch(0.97 0.015 255 / 0.5) 100%)",
@@ -375,7 +376,7 @@ export function Results() {
           </p>
           <a
             href="#avaliacao"
-            className="btn-gold group mt-7 inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-medium"
+            className="btn-gold group mt-7 inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[52px] px-7 py-4 rounded-full text-sm font-medium"
           >
             Quero entender meu caso
             <ArrowRight
@@ -383,6 +384,7 @@ export function Results() {
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
           </a>
+
         </div>
       </div>
     </section>

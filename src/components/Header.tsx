@@ -29,14 +29,15 @@ export function Header() {
           : "bg-white/70 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 flex items-center justify-between h-24 md:h-28">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 flex items-center justify-between h-16 sm:h-20 md:h-24 lg:h-28">
         <a href="#inicio" className="flex items-center gap-2" aria-label="Full Plástica">
           <img
             src={logoAzul}
             alt="Full Plástica"
-            className="h-16 md:h-20 lg:h-24 w-auto object-contain"
+            className="h-10 sm:h-14 md:h-20 lg:h-24 w-auto object-contain"
           />
         </a>
+
 
         <nav className="hidden lg:flex items-center gap-9">
           {links.map((l) => (
@@ -67,13 +68,13 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden glass border-t border-white/10 px-6 py-6 space-y-4">
+        <div className="lg:hidden bg-white/95 backdrop-blur-xl border-t border-royal/10 px-5 sm:px-6 py-6 space-y-1 shadow-[0_12px_30px_-18px_oklch(0.32_0.18_265/0.35)]">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block text-foreground/90 hover:text-gold transition-colors"
+              className="block py-3 text-base text-royal-deep/90 hover:text-royal transition-colors"
             >
               {l.label}
             </a>
@@ -81,12 +82,13 @@ export function Header() {
           <a
             href="#avaliacao"
             onClick={() => setOpen(false)}
-            className="btn-gold inline-flex px-5 py-2.5 rounded-full text-sm font-medium"
+            className="btn-gold mt-4 w-full inline-flex items-center justify-center px-5 py-3.5 rounded-full text-sm font-medium"
           >
             Falar com especialista
           </a>
         </div>
       )}
+
     </header>
   );
 }

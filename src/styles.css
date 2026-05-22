@@ -473,3 +473,29 @@
 }
 .animate-pain-float-2 { animation: pain-float-2 16s ease-in-out infinite; }
 
+/* Mobile — soften heavy ambient animations to keep scroll buttery */
+@media (max-width: 640px) {
+  .animate-hero-float,
+  .animate-hero-float-2,
+  .animate-pain-float,
+  .animate-pain-float-2 {
+    animation-duration: 24s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-float,
+  .animate-hero-float-2,
+  .animate-pain-float,
+  .animate-pain-float-2,
+  .animate-hero-float-img,
+  .animate-hero-glow,
+  .animate-shimmer,
+  .animate-face-morph,
+  .animate-nose-float,
+  .animate-nose-glow {
+    animation: none !important;
+  }
+}
+
+

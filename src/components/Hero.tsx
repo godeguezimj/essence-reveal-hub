@@ -34,12 +34,6 @@ export function Hero() {
 
       <div className="mx-auto max-w-4xl px-5 sm:px-6 lg:px-10 text-center">
         <div className="animate-fade-up flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 glass-gold rounded-full px-4 py-1.5 mb-6">
-            <span className="h-1.5 w-1.5 rounded-full bg-gold animate-shimmer" />
-            <span className="text-[10px] sm:text-xs tracking-[0.22em] uppercase text-gold-soft font-medium">
-              Clínica de cirurgia plástica
-            </span>
-          </div>
 
           <h1 className="text-[2.25rem] sm:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-tight">
             Sinta-se mais confortável com a sua imagem,{" "}

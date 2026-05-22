@@ -310,7 +310,7 @@ export function Results() {
               ))}
             </div>
 
-            <div className="flex items-center gap-3 flex-1 max-w-[16rem]">
+            <div className="flex items-center gap-3 w-full sm:flex-1 sm:max-w-[16rem]">
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
                   paused ? "bg-royal/30" : "bg-royal animate-shimmer"

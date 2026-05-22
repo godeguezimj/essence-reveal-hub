@@ -348,7 +348,7 @@ export function Results() {
 
         {/* Final CTA */}
         <div
-          className="mt-12 sm:mt-14 relative overflow-hidden rounded-[1.75rem] p-8 sm:p-12 text-center"
+          className="mt-12 sm:mt-14 relative overflow-hidden rounded-[1.5rem] sm:rounded-[1.75rem] p-7 sm:p-12 text-center"
           style={{
             background:
               "linear-gradient(180deg, oklch(1 0 0 / 0.7) 0%, oklch(0.97 0.015 255 / 0.5) 100%)",

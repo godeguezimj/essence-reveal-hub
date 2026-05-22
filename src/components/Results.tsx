@@ -376,7 +376,7 @@ export function Results() {
           </p>
           <a
             href="#avaliacao"
-            className="btn-gold group mt-7 inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm font-medium"
+            className="btn-gold group mt-7 inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[52px] px-7 py-4 rounded-full text-sm font-medium"
           >
             Quero entender meu caso
             <ArrowRight
@@ -384,6 +384,7 @@ export function Results() {
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
           </a>
+
         </div>
       </div>
     </section>

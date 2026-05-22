@@ -294,7 +294,7 @@ export function Results() {
           </div>
 
           {/* Controls — dots + progress */}
-          <div className="mt-7 flex items-center justify-between gap-6">
+          <div className="mt-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
             <div className="flex items-center gap-2.5">
               {results.map((r, i) => (
                 <button

@@ -538,3 +538,20 @@
   .animate-spotlight-breathe,
   .animate-spotlight-breathe-2 { animation: none !important; }
 }
+
+@keyframes handle-glow {
+  0%, 100% { filter: drop-shadow(0 0 6px oklch(0.48 0.22 263 / 0.35)); }
+  50%      { filter: drop-shadow(0 0 14px oklch(0.48 0.22 263 / 0.7)); }
+}
+.animate-handle-glow { animation: handle-glow 3.6s ease-in-out infinite; }
+
+@keyframes ba-zoom {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.035); }
+}
+.animate-ba-zoom { animation: ba-zoom 18s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-handle-glow,
+  .animate-ba-zoom { animation: none !important; }
+}

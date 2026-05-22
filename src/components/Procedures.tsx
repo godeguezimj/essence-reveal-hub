@@ -52,15 +52,16 @@ export function Procedures() {
           subtitle="Cada caso é avaliado de forma individual, respeitando sua anatomia, seus objetivos e a harmonia do seu rosto."
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7 mt-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-7 mt-12 sm:mt-16">
           {items.map((item, i) => {
             const { Icon } = item;
             return (
               <a
                 key={item.title}
                 href="#avaliacao"
-                className="procedure-card group relative rounded-[1.75rem] p-9 lg:p-10 flex flex-col cursor-pointer overflow-hidden"
+                className="procedure-card group relative rounded-[1.5rem] sm:rounded-[1.75rem] p-7 sm:p-9 lg:p-10 flex flex-col cursor-pointer overflow-hidden"
               >
+
                 {/* Glow halo */}
                 <span
                   aria-hidden

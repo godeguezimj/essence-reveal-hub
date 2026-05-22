@@ -218,7 +218,7 @@ export function Results() {
   };
 
   return (
-    <section id="resultados" className="relative py-24 lg:py-32 overflow-hidden">
+    <section id="resultados" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden">
       {/* Background glows */}
       <div
         aria-hidden

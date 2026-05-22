@@ -258,17 +258,18 @@ export function Results() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {/* Side fades */}
+          {/* Side fades — hidden on mobile to let cards breathe */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-20 z-10"
+            className="pointer-events-none absolute inset-y-0 left-0 w-0 sm:w-20 z-10 hidden sm:block"
             style={{ background: "linear-gradient(90deg, var(--background), transparent)" }}
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-20 z-10"
+            className="pointer-events-none absolute inset-y-0 right-0 w-0 sm:w-20 z-10 hidden sm:block"
             style={{ background: "linear-gradient(270deg, var(--background), transparent)" }}
           />
+
 
           {/* Track — clip horizontally only so card shadows can breathe vertically */}
           <div

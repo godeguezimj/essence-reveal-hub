@@ -299,12 +299,12 @@ export function LeadForm() {
               </div>
 
               {/* Nav */}
-              <div className="mt-10 flex items-center justify-between gap-4">
+              <div className="mt-8 sm:mt-10 flex flex-col-reverse sm:flex-row items-stretch sm:items-center sm:justify-between gap-3 sm:gap-4">
                 <button
                   type="button"
                   onClick={goBack}
                   disabled={step === 0}
-                  className="inline-flex items-center gap-2 text-sm text-foreground/70 hover:text-royal disabled:opacity-0 transition-all"
+                  className="inline-flex items-center justify-center sm:justify-start gap-2 text-sm text-foreground/70 hover:text-royal disabled:opacity-0 transition-all min-h-[44px]"
                 >
                   <ArrowLeft className="h-4 w-4" /> Voltar
                 </button>
@@ -313,19 +313,20 @@ export function LeadForm() {
                   <button
                     type="button"
                     onClick={goNext}
-                    className="btn-gold inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium"
+                    className="btn-gold inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[54px] px-7 py-3.5 rounded-full text-sm font-medium"
                   >
                     Continuar <ArrowRight className="h-4 w-4" />
                   </button>
                 ) : (
                   <button
                     type="submit"
-                    className="btn-gold inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-medium"
+                    className="btn-gold inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[54px] px-7 py-3.5 rounded-full text-sm font-medium"
                   >
                     Receber avaliação personalizada <ArrowRight className="h-4 w-4" />
                   </button>
                 )}
               </div>
+
 
               {step === total - 1 && (
                 <p className="text-xs text-muted-foreground mt-5 text-center sm:text-left">

@@ -43,7 +43,7 @@ export function PainSection() {
         />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
         <SectionHeading
           eyebrow="Por que tantas pessoas buscam"
           title={

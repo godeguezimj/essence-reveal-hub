@@ -171,7 +171,7 @@ export function LeadForm() {
           style={{ background: "radial-gradient(closest-side, oklch(0.48 0.22 263 / 0.14), transparent)" }} />
       </div>
 
-      <div className="mx-auto max-w-3xl px-6 lg:px-10 relative">
+      <div className="mx-auto max-w-3xl px-5 sm:px-6 lg:px-10 relative">
         <SectionHeading
           eyebrow="Pré-avaliação"
           title={

@@ -15,8 +15,9 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="duvidas" className="py-24 lg:py-32">
-      <div className="mx-auto max-w-4xl px-6 lg:px-10">
+    <section id="duvidas" className="py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-4xl px-5 sm:px-6 lg:px-10">
+
         <SectionHeading
           eyebrow="FAQ"
           title={

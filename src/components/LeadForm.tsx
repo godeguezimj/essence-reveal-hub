@@ -162,7 +162,7 @@ export function LeadForm() {
   };
 
   return (
-    <section id="avaliacao" className="py-24 lg:py-32 relative section-tint overflow-hidden">
+    <section id="avaliacao" className="py-20 sm:py-24 lg:py-32 relative section-tint overflow-hidden">
       {/* soft glows */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 left-1/3 h-[420px] w-[420px] rounded-full blur-3xl opacity-50"

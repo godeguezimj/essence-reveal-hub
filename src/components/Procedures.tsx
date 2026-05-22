@@ -38,8 +38,9 @@ const items = [
 
 export function Procedures() {
   return (
-    <section id="procedimentos" className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="procedimentos" className="py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
+
         <SectionHeading
           eyebrow="Procedimentos"
           title={

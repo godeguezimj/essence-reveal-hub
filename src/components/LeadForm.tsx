@@ -196,9 +196,10 @@ export function LeadForm() {
         </ul>
 
         {/* Card */}
-        <div className="mt-12 relative">
-          <div aria-hidden className="absolute -inset-px rounded-[2rem] bg-gradient-to-b from-royal/15 via-transparent to-royal/10 blur-[1px]" />
-          <div className="relative bg-white rounded-[1.85rem] border border-royal/10 shadow-[0_30px_80px_-30px_oklch(0.32_0.18_265/0.30)] p-7 sm:p-10 lg:p-12">
+        <div className="mt-10 sm:mt-12 relative">
+          <div aria-hidden className="absolute -inset-px rounded-[1.5rem] sm:rounded-[2rem] bg-gradient-to-b from-royal/15 via-transparent to-royal/10 blur-[1px]" />
+          <div className="relative bg-white rounded-[1.4rem] sm:rounded-[1.85rem] border border-royal/10 shadow-[0_30px_80px_-30px_oklch(0.32_0.18_265/0.30)] p-5 sm:p-10 lg:p-12">
+
             {/* Progress */}
             <div className="flex items-center justify-between mb-6">
               <div className="text-xs uppercase tracking-[0.22em] text-royal/80">

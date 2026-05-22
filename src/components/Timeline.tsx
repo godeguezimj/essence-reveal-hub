@@ -77,7 +77,7 @@ export function Timeline() {
   }, [active]);
 
   return (
-    <section className="relative py-24 lg:py-32 overflow-hidden">
+    <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden">
       {/* Organic background glows */}
       <div
         aria-hidden

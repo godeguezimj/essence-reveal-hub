@@ -36,6 +36,13 @@ import {
 type Option = { value: string; label: string; icon: React.ComponentType<{ className?: string }> };
 
 type ProcedureKey = "Blefaroplastia" | "Lipo HD" | "Prótese de Silicone" | "Rinoplastia";
+type LeadFormState = {
+  nome: string;
+  whatsapp: string;
+  procedimento: string;
+  incomodo: string;
+  prazo: string;
+};
 
 const procedimentos: Option[] = [
   { value: "Blefaroplastia", label: "Blefaroplastia", icon: Eye },
@@ -113,24 +120,27 @@ const STEPS = [
   { key: "contato", label: "Contato" },
 ] as const;
 
+const initialForm: LeadFormState = {
+  nome: "",
+  whatsapp: "",
+  procedimento: "",
+  incomodo: "",
+  prazo: "",
+};
+
 export function LeadForm() {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
-  const [form, setForm] = useState({
-    nome: "",
-    whatsapp: "",
-    procedimento: "",
-    incomodo: "",
-    prazo: "",
-  });
+  const [form, setForm] = useState<LeadFormState>(initialForm);
 
   const total = STEPS.length;
   const progress = ((step + 1) / total) * 100;
 
   const goNext = () => {
-    if (step === 0 && !form.procedimento) return toast.error("Escolha um procedimento para continuar.");
-    if (step === 1 && !form.incomodo) return toast.error("Selecione o que mais te incomoda hoje.");
-    if (step === 2 && !form.prazo) return toast.error("Indique quando pretende realizar.");
+    const currentForm = form;
+    if (step === 0 && !currentForm.procedimento) return toast.error("Escolha um procedimento para continuar.");
+    if (step === 1 && !currentForm.incomodo) return toast.error("Selecione o que mais te incomoda hoje.");
+    if (step === 2 && !currentForm.prazo) return toast.error("Indique quando pretende realizar.");
     setDirection(1);
     setStep((s) => Math.min(s + 1, total - 1));
   };
@@ -147,7 +157,7 @@ export function LeadForm() {
       return;
     }
     toast.success("Recebemos seus dados. A equipe Full Plástica entrará em contato em breve.");
-    setForm({ nome: "", whatsapp: "", procedimento: "", incomodo: "", prazo: "" });
+    setForm(initialForm);
     setStep(0);
   };
 
@@ -240,7 +250,7 @@ export function LeadForm() {
                 {step === 0 && (
                   <StepQuestion title="Qual procedimento deseja entender melhor?" hint="Você pode mudar essa escolha depois.">
                     <ChoicesGrid options={procedimentos} value={form.procedimento}
-                      onChange={(v) => { setForm({ ...form, procedimento: v, incomodo: "" }); setTimeout(goNext, 220); }} />
+                      onChange={(v) => setForm((current) => ({ ...current, procedimento: v, incomodo: "" }))} />
                   </StepQuestion>
                 )}
 
@@ -250,7 +260,7 @@ export function LeadForm() {
                   return (
                     <StepQuestion title={cfg.title} hint={cfg.hint}>
                       <ChoicesGrid options={cfg.options} value={form.incomodo}
-                        onChange={(v) => { setForm({ ...form, incomodo: v }); setTimeout(goNext, 220); }} />
+                        onChange={(v) => setForm((current) => ({ ...current, incomodo: v }))} />
                     </StepQuestion>
                   );
                 })()}
@@ -258,7 +268,7 @@ export function LeadForm() {
                 {step === 2 && (
                   <StepQuestion title="Quando pretende realizar?" hint="Sem compromisso — apenas para entendermos o seu momento.">
                     <ChoicesGrid options={prazos} value={form.prazo} columns={1}
-                      onChange={(v) => { setForm({ ...form, prazo: v }); setTimeout(goNext, 220); }} />
+                      onChange={(v) => setForm((current) => ({ ...current, prazo: v }))} />
                   </StepQuestion>
                 )}
 

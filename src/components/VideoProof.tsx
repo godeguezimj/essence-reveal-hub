@@ -17,7 +17,7 @@ const videos: VideoItem[] = [
     id: "video-01",
     thumbnail:
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80",
-    videoUrl: lipoHdProof.url,
+    videoUrl: video01.url,
   },
   {
     id: "video-02",

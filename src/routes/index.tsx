@@ -32,6 +32,7 @@ function Index() {
     <main className="min-h-screen">
       <Header />
       <Hero />
+      <VideoProof />
       <PainSection />
       <Procedures />
       <Results />

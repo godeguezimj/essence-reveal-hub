@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Play, X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import lipoHdProof from "@/assets/lipo-hd-proof.mp4.asset.json";
 
 type VideoItem = {
   id: string;
@@ -12,6 +13,7 @@ const SAMPLE_VIDEO =
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 
 const videos: VideoItem[] = [
+  { id: "lipo-hd", thumbnail: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80", videoUrl: lipoHdProof.url },
   { id: "v1", thumbnail: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80", videoUrl: SAMPLE_VIDEO },
   { id: "v2", thumbnail: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=80", videoUrl: SAMPLE_VIDEO },
   { id: "v3", thumbnail: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=900&q=80", videoUrl: SAMPLE_VIDEO },

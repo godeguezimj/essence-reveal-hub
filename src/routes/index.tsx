@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { VideoProof } from "@/components/VideoProof";
 import { PainSection } from "@/components/PainSection";
 import { Procedures } from "@/components/Procedures";
 import { Structure } from "@/components/Structure";
@@ -31,6 +32,7 @@ function Index() {
     <main className="min-h-screen">
       <Header />
       <Hero />
+      <VideoProof />
       <PainSection />
       <Procedures />
       <Results />

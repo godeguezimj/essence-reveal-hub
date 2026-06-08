@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Play, X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import lipoHdProof from "@/assets/lipo-hd-proof.mp4.asset.json";
+import video01 from "@/assets/video-01.mp4.asset.json";
 
 type VideoItem = {
   id: string;
@@ -17,7 +17,7 @@ const videos: VideoItem[] = [
     id: "video-01",
     thumbnail:
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80",
-    videoUrl: lipoHdProof.url,
+    videoUrl: video01.url,
   },
   {
     id: "video-02",

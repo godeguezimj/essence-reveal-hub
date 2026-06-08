@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Play, X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import lipoHdProof from "@/assets/lipo-hd-proof.mp4.asset.json";
+import video01 from "@/assets/video-01.mp4.asset.json";
 
 type VideoItem = {
   id: string;

@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { PainSection } from "@/components/PainSection";
 import { Procedures } from "@/components/Procedures";
-import { ProcedureSpotlight } from "@/components/ProcedureSpotlight";
+import { Structure } from "@/components/Structure";
 import { Results } from "@/components/Results";
 import { LeadForm } from "@/components/LeadForm";
 import { Timeline } from "@/components/Timeline";
@@ -13,7 +13,6 @@ import { Testimonials } from "@/components/Testimonials";
 import { Faq } from "@/components/Faq";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
-import blefaroImg from "@/assets/blefaroplastia.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,27 +34,7 @@ function Index() {
       <PainSection />
       <Procedures />
       <Results />
-      <ProcedureSpotlight
-        image={blefaroImg}
-        eyebrow="Blefaroplastia"
-        title={<>Um olhar mais <span className="text-gradient-gold italic">leve</span>, descansado e natural</>}
-        text="Um procedimento planejado para devolver leveza ao olhar — suavizando o excesso de pele e as bolsas que carregam expressão de cansaço, sempre respeitando seus traços e sua naturalidade."
-        points={[
-          "Olhar mais leve e descansado",
-          "Resultado natural e elegante",
-          "Planejamento individual",
-          "Recuperação acompanhada",
-          "Acompanhamento próximo",
-        ]}
-        cta="Quero entender meu caso"
-        microcopy={[
-          "Atendimento individual",
-          "Planejamento personalizado",
-          "Resposta rápida no WhatsApp",
-        ]}
-        reverse
-        dark
-      />
+      <Structure />
       <LeadForm />
       <Timeline />
       <About />

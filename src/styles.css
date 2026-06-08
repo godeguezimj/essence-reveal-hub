@@ -555,3 +555,16 @@
   .animate-handle-glow,
   .animate-ba-zoom { animation: none !important; }
 }
+
+/* Vertical video marquee */
+@keyframes vp-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.vp-track { animation: vp-scroll 60s linear infinite; will-change: transform; }
+.vp-marquee:hover .vp-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vp-track { animation: none !important; }
+  .vp-marquee { overflow-x: auto; }
+}

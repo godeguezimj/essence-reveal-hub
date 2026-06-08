@@ -1,12 +1,15 @@
+import { useState } from "react";
 import {
   Check,
   ShieldCheck,
   HeartPulse,
   Stethoscope,
   Building2,
-  Play,
   ArrowRight,
+  X,
 } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import structureVideo from "@/assets/structure-video.mp4.asset.json";
 
 const points = [
   "Centro cirúrgico hospitalar",
@@ -22,12 +25,10 @@ const trustBadges = [
   { icon: ShieldCheck, label: "Segurança em Todas as Etapas" },
 ];
 
-interface Props {
-  videoSrc?: string;
-  posterSrc?: string;
-}
+export function Structure() {
+  const [open, setOpen] = useState(false);
+  const videoUrl = structureVideo.url;
 
-export function Structure({ videoSrc, posterSrc }: Props) {
   return (
     <section className="section-royal on-royal relative overflow-hidden py-20 sm:py-28 lg:py-36">
       {/* Ambient cinematic background */}
@@ -72,9 +73,9 @@ export function Structure({ videoSrc, posterSrc }: Props) {
         </ul>
 
         <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 items-center">
-          {/* Video side */}
-          <div className="lg:order-2">
-            <div className="relative animate-spotlight-float">
+          {/* Video side — vertical 9:16 premium */}
+          <div className="lg:order-2 flex justify-center">
+            <div className="relative animate-spotlight-float w-full max-w-[360px] sm:max-w-[400px] lg:max-w-[420px]">
               <div
                 aria-hidden
                 className="absolute -inset-10 sm:-inset-14 rounded-[3rem] blur-3xl opacity-70 animate-spotlight-glow"
@@ -92,49 +93,21 @@ export function Structure({ videoSrc, posterSrc }: Props) {
                 }}
               />
 
-              <div className="relative rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden border border-white/15 shadow-[0_40px_80px_-30px_oklch(0.18_0.12_265_/_0.7)]">
-                {videoSrc ? (
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    poster={posterSrc}
-                    className="w-full aspect-[4/5] sm:aspect-[5/4] lg:aspect-auto lg:h-[520px] object-cover"
-                  >
-                    <source src={videoSrc} type="video/mp4" />
-                  </video>
-                ) : (
-                  <div
-                    className="relative w-full aspect-[4/5] sm:aspect-[5/4] lg:aspect-auto lg:h-[520px] grid place-items-center overflow-hidden"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, oklch(0.28 0.14 265) 0%, oklch(0.18 0.10 265) 60%, oklch(0.14 0.08 265) 100%)",
-                    }}
-                  >
-                    <div
-                      aria-hidden
-                      className="absolute inset-0 opacity-30"
-                      style={{
-                        backgroundImage:
-                          "radial-gradient(oklch(1 0 0 / 0.35) 1px, transparent 1px)",
-                        backgroundSize: "22px 22px",
-                      }}
-                    />
-                    <div className="relative flex flex-col items-center gap-4 text-center px-6">
-                      <span className="grid place-items-center h-16 w-16 rounded-full border border-white/30 bg-white/10 backdrop-blur-md animate-spotlight-breathe">
-                        <Play size={22} className="text-white translate-x-0.5" strokeWidth={1.8} />
-                      </span>
-                      <p className="text-[11px] tracking-[0.32em] uppercase text-white/70">
-                        Vídeo institucional
-                      </p>
-                      <p className="text-white/90 text-sm max-w-[16rem] leading-relaxed">
-                        Conheça nossa estrutura hospitalar, centro cirúrgico e equipe
-                      </p>
-                    </div>
-                  </div>
-                )}
+              <button
+                type="button"
+                onClick={() => setOpen(true)}
+                aria-label="Abrir vídeo institucional"
+                className="group relative block w-full aspect-[9/16] rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden border border-white/15 shadow-[0_40px_80px_-30px_oklch(0.18_0.12_265_/_0.7)] transition-transform duration-500 hover:scale-[1.015]"
+              >
+                <video
+                  src={videoUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
 
                 {/* Cinematic gradient overlay */}
                 <div
@@ -154,7 +127,7 @@ export function Structure({ videoSrc, posterSrc }: Props) {
                       "linear-gradient(180deg, oklch(1 0 0 / 0.18), transparent)",
                   }}
                 />
-              </div>
+              </button>
             </div>
           </div>
 
@@ -234,6 +207,28 @@ export function Structure({ videoSrc, posterSrc }: Props) {
           </div>
         </div>
       </div>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-[420px] border-white/10 bg-black/95 p-0 backdrop-blur-2xl [&>button]:hidden">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="absolute -top-12 right-0 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 text-white/80 backdrop-blur-md transition hover:bg-white/10 hover:text-white"
+            aria-label="Fechar"
+          >
+            <X className="h-4 w-4" />
+          </button>
+          <div className="overflow-hidden rounded-lg">
+            <video
+              src={videoUrl}
+              controls
+              autoPlay
+              playsInline
+              className="aspect-[9/16] w-full bg-black"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

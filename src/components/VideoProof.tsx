@@ -46,19 +46,57 @@ function VideoTile({
   video: VideoItem;
   onOpen: (v: VideoItem) => void;
 }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const containerRef = useRef<HTMLButtonElement | null>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    const vid = videoRef.current;
+    if (!el || !vid) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          vid.play().catch(() => {});
+        } else {
+          vid.pause();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <button
+      ref={containerRef}
       type="button"
       onClick={() => onOpen(video)}
-      className="group relative block aspect-[9/16] h-full w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-black shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)] transition-all duration-500 hover:-translate-y-1 hover:border-[oklch(0.78_0.13_85_/_0.55)] hover:shadow-[0_40px_100px_-30px_oklch(0.55_0.18_265_/_0.55)]"
+      className="group relative block aspect-[9/16] h-full w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-black shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)] transition-all duration-500 hover:-translate-y-1 hover:scale-[1.02] hover:border-[oklch(0.78_0.13_85_/_0.55)] hover:shadow-[0_40px_100px_-30px_oklch(0.55_0.18_265_/_0.55)]"
     >
-      <img
-        src={video.thumbnail}
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+      {!ready && (
+        <img
+          src={video.thumbnail}
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
+      <video
+        ref={videoRef}
+        src={video.videoUrl}
+        poster={video.thumbnail}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        autoPlay
+        onLoadedData={() => setReady(true)}
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15" />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -68,9 +106,9 @@ function VideoTile({
         }}
       />
 
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center opacity-80 transition-opacity duration-500 group-hover:opacity-100">
         <span className="relative flex items-center justify-center">
-          <span className="absolute inset-0 rounded-full bg-[oklch(0.78_0.13_85_/_0.25)] blur-xl transition-all duration-500 group-hover:bg-[oklch(0.78_0.13_85_/_0.5)]" />
+          <span className="absolute inset-0 rounded-full bg-[oklch(0.78_0.13_85_/_0.25)] blur-xl transition-all duration-500 group-hover:bg-[oklch(0.78_0.13_85_/_0.55)]" />
           <span className="relative flex h-16 w-16 items-center justify-center rounded-full border border-white/40 bg-white/10 backdrop-blur-md transition-all duration-500 group-hover:scale-110 group-hover:border-[oklch(0.85_0.13_85)]">
             <Play className="h-6 w-6 fill-white text-white" strokeWidth={1.5} />
           </span>

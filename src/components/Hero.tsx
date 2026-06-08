@@ -1,4 +1,4 @@
-import { ShieldCheck, ArrowRight, Stethoscope, Hospital, ClipboardList, HeartHandshake, Award } from "lucide-react";
+import { ArrowRight, Stethoscope, Hospital, ClipboardList, HeartHandshake } from "lucide-react";
 import teamAsset from "@/assets/team.png.asset.json";
 
 const benefits = [
@@ -83,91 +83,38 @@ export function Hero() {
             </ul>
           </div>
 
-          {/* Image column */}
+          {/* Image column — bare PNG, integrated */}
           <div className="relative order-1 lg:order-2 animate-fade-up">
-            <div className="relative mx-auto max-w-[28rem] lg:max-w-none">
-              {/* Ambient glows behind image */}
+            <div className="relative mx-auto w-full max-w-[26rem] lg:max-w-none lg:-mr-6 xl:-mr-12">
+              {/* Soft shadow + blue glow behind */}
               <span
                 aria-hidden
-                className="absolute -inset-8 sm:-inset-10 rounded-[2.5rem] blur-3xl opacity-70 -z-10"
+                className="absolute inset-x-6 bottom-2 h-10 blur-2xl opacity-60 -z-10"
                 style={{
                   background:
-                    "radial-gradient(ellipse at 30% 20%, oklch(0.48 0.22 263 / 0.35), transparent 65%), radial-gradient(ellipse at 80% 80%, oklch(0.78 0.14 85 / 0.18), transparent 65%)",
+                    "radial-gradient(ellipse at center, oklch(0.32 0.18 265 / 0.45), transparent 70%)",
+                }}
+              />
+              <span
+                aria-hidden
+                className="absolute -inset-10 sm:-inset-14 rounded-full blur-3xl opacity-60 -z-10"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 55%, oklch(0.48 0.22 263 / 0.22), transparent 65%)",
                 }}
               />
 
-              <div
-                className="relative rounded-[1.75rem] sm:rounded-[2rem] overflow-hidden"
+              <img
+                src={teamAsset.url}
+                alt="Equipe médica especializada da Full Plástica"
+                className="relative block w-full h-auto object-contain animate-hero-float select-none pointer-events-none"
                 style={{
-                  border: "1px solid oklch(0.48 0.22 263 / 0.18)",
-                  boxShadow:
-                    "0 40px 80px -30px oklch(0.32 0.18 265 / 0.45), inset 0 1px 0 oklch(1 0 0 / 0.4)",
+                  filter:
+                    "drop-shadow(0 30px 40px oklch(0.18 0.12 265 / 0.28)) drop-shadow(0 8px 16px oklch(0.18 0.12 265 / 0.18))",
                 }}
-              >
-                <img
-                  src={teamAsset.url}
-                  alt="Equipe médica especializada da Full Plástica"
-                  className="block w-full h-auto object-cover aspect-[4/5] sm:aspect-[5/6]"
-                  loading="eager"
-                  decoding="async"
-                />
-
-                {/* Soft gradient overlay for legibility */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(to top, oklch(0.18 0.12 265 / 0.55) 0%, oklch(0.18 0.12 265 / 0.10) 35%, transparent 60%)",
-                  }}
-                />
-
-                {/* Top-right floating CRM-style badge */}
-                <div className="absolute top-4 right-4 sm:top-5 sm:right-5">
-                  <div
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] sm:text-[11px] tracking-wide text-white/95 backdrop-blur-md"
-                    style={{
-                      background: "oklch(0.18 0.12 265 / 0.45)",
-                      border: "1px solid oklch(1 0 0 / 0.18)",
-                    }}
-                  >
-                    <ShieldCheck size={12} strokeWidth={2} className="text-gold" />
-                    <span className="font-medium">Atendimento Premium</span>
-                  </div>
-                </div>
-
-                {/* Bottom seal — Equipe Médica Especializada */}
-                <div className="absolute left-3 right-3 bottom-3 sm:left-5 sm:right-5 sm:bottom-5">
-                  <div
-                    className="flex items-center gap-3 sm:gap-3.5 rounded-2xl px-4 py-3 sm:px-5 sm:py-3.5 backdrop-blur-xl"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, oklch(1 0 0 / 0.78), oklch(0.97 0.015 255 / 0.62))",
-                      border: "1px solid oklch(1 0 0 / 0.55)",
-                      boxShadow: "0 18px 40px -20px oklch(0.18 0.12 265 / 0.55)",
-                    }}
-                  >
-                    <span
-                      className="h-10 w-10 sm:h-11 sm:w-11 shrink-0 rounded-full grid place-items-center"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, oklch(0.78 0.14 85), oklch(0.66 0.16 75))",
-                        boxShadow: "inset 0 1px 0 oklch(1 0 0 / 0.45)",
-                      }}
-                    >
-                      <Award size={17} className="text-white" strokeWidth={2.2} />
-                    </span>
-                    <div className="min-w-0 text-left">
-                      <p className="font-display text-[13px] sm:text-sm text-royal-deep leading-tight tracking-tight">
-                        Equipe Médica Especializada
-                      </p>
-                      <p className="mt-0.5 text-[10.5px] sm:text-[11.5px] text-royal-deep/65 leading-snug">
-                        Planejamento individual • Ambiente hospitalar • Acompanhamento completo
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                loading="eager"
+                decoding="async"
+              />
             </div>
           </div>
         </div>

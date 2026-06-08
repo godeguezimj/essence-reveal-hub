@@ -1,4 +1,4 @@
-import { ShieldCheck, ArrowRight, Stethoscope, Hospital, ClipboardList, HeartHandshake, Award } from "lucide-react";
+import { ArrowRight, Stethoscope, Hospital, ClipboardList, HeartHandshake } from "lucide-react";
 import teamAsset from "@/assets/team.png.asset.json";
 
 const benefits = [

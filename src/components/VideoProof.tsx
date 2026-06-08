@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Play, X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import video01 from "@/assets/video-01.mp4.asset.json";
+import video02 from "@/assets/video-02.mp4.asset.json";
 
 type VideoItem = {
   id: string;
@@ -23,7 +24,7 @@ const videos: VideoItem[] = [
     id: "video-02",
     thumbnail:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80",
-    videoUrl: SAMPLE_VIDEO,
+    videoUrl: video02.url,
   },
   {
     id: "video-03",

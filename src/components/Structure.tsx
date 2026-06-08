@@ -154,16 +154,6 @@ export function Structure({ videoSrc, posterSrc }: Props) {
                       "linear-gradient(180deg, oklch(1 0 0 / 0.18), transparent)",
                   }}
                 />
-                {/* Subtle live indicator */}
-                <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-md border border-white/15">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-white/80 opacity-75 animate-ping" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-                  </span>
-                  <span className="text-[10.5px] tracking-[0.25em] uppercase text-white/90">
-                    Estrutura Full Plástica
-                  </span>
-                </div>
               </div>
             </div>
           </div>

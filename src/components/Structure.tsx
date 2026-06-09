@@ -231,7 +231,7 @@ export function Structure() {
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-[420px] border-white/10 bg-black/95 p-0 backdrop-blur-2xl [&>button]:hidden">
+        <DialogContent className="max-w-[480px] border-white/10 bg-black/95 p-0 backdrop-blur-2xl overflow-hidden rounded-2xl [&>button]:hidden">
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -240,12 +240,13 @@ export function Structure() {
           >
             <X className="h-4 w-4" />
           </button>
-          <div className="overflow-hidden rounded-lg">
+          <div className="overflow-hidden rounded-2xl bg-black">
             <video
               src={videoUrl}
               controls
               autoPlay
               playsInline
+              preload="auto"
               className="aspect-[9/16] w-full bg-black"
             />
           </div>

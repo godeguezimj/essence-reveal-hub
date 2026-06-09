@@ -28,7 +28,7 @@ export function Hero() {
       />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
-        <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 lg:gap-12 items-center">
           {/* Copy column */}
           <div className="animate-fade-up text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
             <h1 className="text-[2rem] sm:text-5xl lg:text-[3.5rem] leading-[1.08] sm:leading-[1.04] tracking-tight max-w-xl">
@@ -78,13 +78,19 @@ export function Hero() {
             </ul>
           </div>
 
-          {/* Image column — bare PNG, integrated */}
+          {/* Image column — large, faded into background */}
           <div className="relative order-1 lg:order-2 animate-fade-up">
-            <div className="relative mx-auto w-full max-w-[26rem] lg:max-w-none lg:-mr-6 xl:-mr-12">
+            <div className="relative mx-auto w-full max-w-[32rem] sm:max-w-[36rem] lg:max-w-none lg:-mr-10 xl:-mr-16 lg:-mt-8 xl:-mt-12 lg:-mb-16">
+              {/* Soft ambient shadow behind subjects */}
+              <div
+                aria-hidden
+                className="absolute inset-x-6 bottom-6 top-1/3 -z-10 rounded-[40%] blur-3xl opacity-60"
+                style={{ background: "radial-gradient(ellipse at center, oklch(0.48 0.22 263 / 0.18), transparent 70%)" }}
+              />
               <img
                 src={teamAsset.url}
                 alt="Equipe médica especializada da Full Plástica"
-                className="relative block w-full h-auto object-contain animate-hero-float select-none pointer-events-none"
+                className="relative block w-full h-auto object-contain animate-hero-float select-none pointer-events-none hero-team-fade"
                 loading="eager"
                 decoding="async"
               />

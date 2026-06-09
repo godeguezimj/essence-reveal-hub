@@ -10,7 +10,7 @@ import { Results } from "@/components/Results";
 import { LeadForm } from "@/components/LeadForm";
 import { Timeline } from "@/components/Timeline";
 import { About } from "@/components/About";
-import { Testimonials } from "@/components/Testimonials";
+
 import { Faq } from "@/components/Faq";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
@@ -40,7 +40,7 @@ function Index() {
       <LeadForm />
       <Timeline />
       <About />
-      <Testimonials />
+      
       <Faq />
       <FinalCta />
       <Footer />

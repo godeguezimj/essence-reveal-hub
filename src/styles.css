@@ -319,8 +319,18 @@
 
 /* Hero team image — soft fade into background at the bottom */
 .hero-team-fade {
-  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
-          mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+}
+
+/* CTA pulse — discreet attention loop for the primary action */
+@keyframes btn-pulse-ring {
+  0%, 100% { box-shadow: 0 8px 24px -10px oklch(0.48 0.22 263 / 0.45), 0 0 0 0 oklch(0.48 0.22 263 / 0.35); }
+  50%      { box-shadow: 0 10px 28px -10px oklch(0.48 0.22 263 / 0.55), 0 0 0 10px oklch(0.48 0.22 263 / 0); }
+}
+.btn-pulse { animation: btn-pulse-ring 2.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .btn-pulse { animation: none !important; }
 }
 
 @keyframes hero-glow {

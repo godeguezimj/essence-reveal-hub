@@ -1,4 +1,4 @@
-import { ArrowRight, Stethoscope, Hospital, Sparkles, Users, Star, Building2 } from "lucide-react";
+import { ArrowRight, Stethoscope, Hospital, Sparkles, Users, Star, Building2, ClipboardList, HeartHandshake } from "lucide-react";
 import teamAsset from "@/assets/team-couple.png.asset.json";
 
 // WhatsApp glyph — inline SVG to avoid extra deps
@@ -11,9 +11,10 @@ function WhatsAppIcon({ size = 18 }: { size?: number }) {
 }
 
 const authorityChips = [
-  { icon: Stethoscope, label: "Equipe Médica Especializada" },
+  { icon: Stethoscope, label: "Equipe Especializada" },
   { icon: Hospital, label: "Ambiente Hospitalar" },
-  { icon: Sparkles, label: "Atendimento Premium" },
+  { icon: ClipboardList, label: "Planejamento Individual" },
+  { icon: HeartHandshake, label: "Acompanhamento Completo" },
 ];
 
 const socialProof = [

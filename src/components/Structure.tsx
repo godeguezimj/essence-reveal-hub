@@ -98,7 +98,7 @@ export function Structure() {
                 type="button"
                 onClick={() => setOpen(true)}
                 aria-label="Abrir vídeo institucional"
-                className="group relative block w-full aspect-[9/16] rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden border border-white/15 shadow-[0_40px_80px_-30px_oklch(0.18_0.12_265_/_0.7)] transition-transform duration-500 hover:scale-[1.015]"
+                className="group relative block w-full aspect-[9/16] rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden border border-white/15 shadow-[0_40px_80px_-30px_oklch(0.18_0.12_265_/_0.7)] transition-transform duration-500 hover:scale-[1.02]"
               >
                 <video
                   src={videoUrl}
@@ -107,7 +107,7 @@ export function Structure() {
                   loop
                   playsInline
                   preload="metadata"
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
                 {/* Cinematic gradient overlay */}
@@ -128,6 +128,27 @@ export function Structure() {
                       "linear-gradient(180deg, oklch(1 0 0 / 0.18), transparent)",
                   }}
                 />
+
+                {/* Premium centered Play button */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-black/10 transition-opacity duration-500 group-hover:bg-black/20"
+                  />
+                  <div className="relative flex flex-col items-center gap-3 z-10 transition-transform duration-500 group-hover:scale-110">
+                    <div className="relative grid place-items-center h-16 w-16 rounded-full border border-white/40 bg-white/10 backdrop-blur-xl shadow-[0_0_40px_-8px_oklch(0.72_0.18_260_/_0.6)] transition-all duration-500 group-hover:shadow-[0_0_60px_-4px_oklch(0.72_0.18_260_/_0.85)] group-hover:bg-white/20 group-hover:border-white/60">
+                      <Play
+                        size={28}
+                        className="text-white ml-1 drop-shadow-lg"
+                        strokeWidth={2}
+                        fill="currentColor"
+                      />
+                    </div>
+                    <span className="text-[13px] sm:text-[14px] font-medium tracking-wide text-white/95 drop-shadow-md">
+                      Assistir estrutura completa
+                    </span>
+                  </div>
+                </div>
               </button>
             </div>
           </div>

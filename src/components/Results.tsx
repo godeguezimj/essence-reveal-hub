@@ -39,59 +39,95 @@ function BeforeAfter({
   initial?: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState(initial);
+  const clipRef = useRef<HTMLDivElement>(null);
+  const dividerRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef(initial);
+  const rafRef = useRef<number | null>(null);
+  const pendingX = useRef<number | null>(null);
   const dragging = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const applyPos = (pos: number) => {
+    posRef.current = pos;
+    if (clipRef.current) clipRef.current.style.clipPath = `inset(0 ${100 - pos}% 0 0)`;
+    if (dividerRef.current) dividerRef.current.style.left = `${pos}%`;
+    if (handleRef.current) handleRef.current.style.left = `${pos}%`;
+  };
+
+  const scheduleUpdate = () => {
+    if (rafRef.current != null) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      const el = containerRef.current;
+      if (!el || pendingX.current == null) return;
+      const rect = el.getBoundingClientRect();
+      const x = ((pendingX.current - rect.left) / rect.width) * 100;
+      applyPos(Math.min(98, Math.max(2, x)));
+    });
+  };
 
   const setFromClientX = (clientX: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = ((clientX - rect.left) / rect.width) * 100;
-    setPos(Math.min(98, Math.max(2, x)));
+    pendingX.current = clientX;
+    scheduleUpdate();
   };
 
   useEffect(() => {
+    applyPos(initial);
     const onMove = (e: MouseEvent | TouchEvent) => {
       if (!dragging.current) return;
-      const cx = "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
-      setFromClientX(cx);
+      if ("touches" in e) {
+        if (e.cancelable) e.preventDefault();
+        setFromClientX(e.touches[0].clientX);
+      } else {
+        setFromClientX((e as MouseEvent).clientX);
+      }
     };
-    const onUp = () => (dragging.current = false);
+    const onUp = () => {
+      if (!dragging.current) return;
+      dragging.current = false;
+      setIsDragging(false);
+    };
     window.addEventListener("mousemove", onMove);
-    window.addEventListener("touchmove", onMove, { passive: true });
+    window.addEventListener("touchmove", onMove, { passive: false });
     window.addEventListener("mouseup", onUp);
     window.addEventListener("touchend", onUp);
+    window.addEventListener("touchcancel", onUp);
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("touchmove", onMove);
       window.removeEventListener("mouseup", onUp);
       window.removeEventListener("touchend", onUp);
+      window.removeEventListener("touchcancel", onUp);
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const startDrag = (clientX: number) => {
+    dragging.current = true;
+    setIsDragging(true);
+    setFromClientX(clientX);
+  };
 
   return (
     <div
       ref={containerRef}
-      className={`group/ba relative w-full aspect-[4/5] ${rounded} overflow-hidden select-none cursor-ew-resize bg-white ring-1 ring-black/5 transition-all duration-500`}
-      onMouseDown={(e) => {
-        dragging.current = true;
-        setFromClientX(e.clientX);
-      }}
-      onTouchStart={(e) => {
-        dragging.current = true;
-        setFromClientX(e.touches[0].clientX);
-      }}
+      className={`group/ba relative w-full aspect-[4/5] ${rounded} overflow-hidden select-none cursor-ew-resize bg-white ring-1 ring-black/5 touch-none`}
+      onMouseDown={(e) => startDrag(e.clientX)}
+      onTouchStart={(e) => startDrag(e.touches[0].clientX)}
     >
       <img
         src={after}
         alt={`${alt} — depois`}
         loading="lazy"
         draggable={false}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       />
       <div
-        className="absolute inset-0 overflow-hidden"
-        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+        ref={clipRef}
+        className="absolute inset-0 overflow-hidden pointer-events-none will-change-[clip-path]"
+        style={{ clipPath: `inset(0 ${100 - initial}% 0 0)` }}
       >
         <img
           src={before}
@@ -110,17 +146,19 @@ function BeforeAfter({
       </span>
 
       <div
-        className="absolute top-0 bottom-0 w-px bg-white/90 pointer-events-none transition-all duration-300 group-hover/ba:w-[2px]"
+        ref={dividerRef}
+        className={`absolute top-0 bottom-0 w-px bg-white/90 pointer-events-none will-change-[left] ${isDragging ? "" : "transition-[width] duration-300 group-hover/ba:w-[2px]"}`}
         style={{
-          left: `${pos}%`,
+          left: `${initial}%`,
           boxShadow:
             "0 0 18px oklch(0.48 0.22 263 / 0.55), 0 0 40px oklch(0.48 0.22 263 / 0.25)",
         }}
       />
       <div
-        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white grid place-items-center transition-transform duration-300 group-hover/ba:scale-110"
+        ref={handleRef}
+        className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white grid place-items-center will-change-[left,transform] ${isDragging ? "" : "transition-transform duration-300 group-hover/ba:scale-110"}`}
         style={{
-          left: `${pos}%`,
+          left: `${initial}%`,
           boxShadow:
             "0 12px 30px -8px oklch(0.32 0.18 265 / 0.45), 0 0 0 6px oklch(1 0 0 / 0.4), 0 0 30px oklch(0.48 0.22 263 / 0.35)",
         }}

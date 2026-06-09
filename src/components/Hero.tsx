@@ -1,5 +1,5 @@
 import { ArrowRight, Stethoscope, Hospital, ClipboardList, HeartHandshake } from "lucide-react";
-import teamAsset from "@/assets/team.png.asset.json";
+import teamAsset from "@/assets/team-couple.png.asset.json";
 
 const benefits = [
   { icon: Stethoscope, label: "Equipe especializada" },
@@ -81,32 +81,10 @@ export function Hero() {
           {/* Image column — bare PNG, integrated */}
           <div className="relative order-1 lg:order-2 animate-fade-up">
             <div className="relative mx-auto w-full max-w-[26rem] lg:max-w-none lg:-mr-6 xl:-mr-12">
-              {/* Soft shadow + blue glow behind */}
-              <span
-                aria-hidden
-                className="absolute inset-x-6 bottom-2 h-10 blur-2xl opacity-60 -z-10"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, oklch(0.32 0.18 265 / 0.45), transparent 70%)",
-                }}
-              />
-              <span
-                aria-hidden
-                className="absolute -inset-10 sm:-inset-14 rounded-full blur-3xl opacity-60 -z-10"
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 55%, oklch(0.48 0.22 263 / 0.22), transparent 65%)",
-                }}
-              />
-
               <img
                 src={teamAsset.url}
                 alt="Equipe médica especializada da Full Plástica"
                 className="relative block w-full h-auto object-contain animate-hero-float select-none pointer-events-none"
-                style={{
-                  filter:
-                    "drop-shadow(0 30px 40px oklch(0.18 0.12 265 / 0.28)) drop-shadow(0 8px 16px oklch(0.18 0.12 265 / 0.18))",
-                }}
                 loading="eager"
                 decoding="async"
               />

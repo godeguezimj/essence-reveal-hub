@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, Move } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Move, X } from "lucide-react";
 import rinoAntes from "@/assets/rino-antes.jpg";
 import rinoDepois from "@/assets/rino-depois.jpg";
 import blefaroAntes from "@/assets/blefaro-antes.jpg";
@@ -25,9 +25,21 @@ const results: Result[] = [
 
 const AUTOPLAY_MS = 6000;
 
-function BeforeAfter({ before, after, alt }: { before: string; after: string; alt: string }) {
+function BeforeAfter({
+  before,
+  after,
+  alt,
+  rounded = "rounded-[1.5rem]",
+  initial = 50,
+}: {
+  before: string;
+  after: string;
+  alt: string;
+  rounded?: string;
+  initial?: number;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState(50);
+  const [pos, setPos] = useState(initial);
   const dragging = useRef(false);
 
   const setFromClientX = (clientX: number) => {
@@ -60,7 +72,7 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[4/5] rounded-[1.25rem] overflow-hidden select-none cursor-ew-resize shadow-[0_30px_70px_-30px_oklch(0.18_0.12_265_/_0.55)] ring-1 ring-white/40"
+      className={`group/ba relative w-full aspect-[4/5] ${rounded} overflow-hidden select-none cursor-ew-resize bg-white ring-1 ring-black/5 transition-all duration-500`}
       onMouseDown={(e) => {
         dragging.current = true;
         setFromClientX(e.clientX);
@@ -90,12 +102,6 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
         />
       </div>
 
-      <div
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none"
-        style={{ background: "linear-gradient(0deg, oklch(0.18 0.06 265 / 0.45), transparent)" }}
-      />
-
       <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full text-[10px] tracking-[0.26em] uppercase font-medium bg-white/15 text-white backdrop-blur-md border border-white/25">
         Antes
       </span>
@@ -104,18 +110,22 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
       </span>
 
       <div
-        className="absolute top-0 bottom-0 w-px bg-white/90 pointer-events-none"
-        style={{ left: `${pos}%`, boxShadow: "0 0 24px oklch(0.48 0.22 263 / 0.7)" }}
-      />
-      <div
-        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-11 w-11 rounded-full bg-white grid place-items-center"
+        className="absolute top-0 bottom-0 w-px bg-white/90 pointer-events-none transition-all duration-300 group-hover/ba:w-[2px]"
         style={{
           left: `${pos}%`,
           boxShadow:
-            "0 10px 28px -6px oklch(0.32 0.18 265 / 0.55), 0 0 0 5px oklch(1 0 0 / 0.35)",
+            "0 0 18px oklch(0.48 0.22 263 / 0.55), 0 0 40px oklch(0.48 0.22 263 / 0.25)",
+        }}
+      />
+      <div
+        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-12 w-12 rounded-full bg-white grid place-items-center transition-transform duration-300 group-hover/ba:scale-110"
+        style={{
+          left: `${pos}%`,
+          boxShadow:
+            "0 12px 30px -8px oklch(0.32 0.18 265 / 0.45), 0 0 0 6px oklch(1 0 0 / 0.4), 0 0 30px oklch(0.48 0.22 263 / 0.35)",
         }}
       >
-        <Move size={15} className="text-royal" strokeWidth={2.4} />
+        <Move size={16} className="text-royal" strokeWidth={2.4} />
       </div>
     </div>
   );
@@ -124,9 +134,9 @@ function BeforeAfter({ before, after, alt }: { before: string; after: string; al
 export function Results() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [openId, setOpenId] = useState<string | null>(null);
   const total = results.length;
 
-  // responsive items per view
   const [perView, setPerView] = useState(1);
   useEffect(() => {
     const update = () => {
@@ -138,16 +148,23 @@ export function Results() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const maxIndex = Math.max(0, total - perView);
-
+  // infinite loop: cycle through all slides
   useEffect(() => {
     if (paused) return;
-    const t = setTimeout(
-      () => setIndex((i) => (i >= maxIndex ? 0 : i + 1)),
-      AUTOPLAY_MS,
-    );
+    const t = setTimeout(() => setIndex((i) => (i + 1) % total), AUTOPLAY_MS);
     return () => clearTimeout(t);
-  }, [index, paused, maxIndex]);
+  }, [index, paused, total]);
+
+  useEffect(() => {
+    if (!openId) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpenId(null);
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [openId]);
 
   const touchStart = useRef<number | null>(null);
   const onTouchStart = (e: React.TouchEvent) => {
@@ -158,17 +175,16 @@ export function Results() {
     if (touchStart.current == null) return;
     const dx = e.changedTouches[0].clientX - touchStart.current;
     if (Math.abs(dx) > 50) {
-      setIndex((i) => {
-        const next = dx < 0 ? i + 1 : i - 1;
-        return Math.min(maxIndex, Math.max(0, next));
-      });
+      setIndex((i) => (dx < 0 ? (i + 1) % total : (i - 1 + total) % total));
     }
     touchStart.current = null;
     setTimeout(() => setPaused(false), 800);
   };
 
-  const prev = () => setIndex((i) => (i <= 0 ? maxIndex : i - 1));
-  const next = () => setIndex((i) => (i >= maxIndex ? 0 : i + 1));
+  const prev = () => setIndex((i) => (i - 1 + total) % total);
+  const next = () => setIndex((i) => (i + 1) % total);
+
+  const openItem = openId ? results.find((r) => r.id === openId) : null;
 
   return (
     <section id="resultados" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden">
@@ -184,7 +200,6 @@ export function Results() {
       />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
-        {/* Heading */}
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 glass-gold rounded-full px-4 py-1.5 mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-gold animate-shimmer" />
@@ -200,14 +215,13 @@ export function Results() {
           </p>
         </div>
 
-        {/* Carousel */}
         <div
-          className="mt-12 sm:mt-14 relative"
+          className="mt-14 sm:mt-16 relative"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           <div
-            className="overflow-hidden -mx-2"
+            className="overflow-hidden -mx-3 sm:-mx-4 px-1 py-6"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
           >
@@ -221,24 +235,27 @@ export function Results() {
               {results.map((r) => (
                 <div
                   key={r.id}
-                  className="shrink-0 px-2"
+                  className="shrink-0 px-3 sm:px-4"
                   style={{ width: `${100 / perView}%` }}
                 >
-                  <article className="group">
+                  <button
+                    type="button"
+                    onClick={() => setOpenId(r.id)}
+                    aria-label={`Ver ${r.label} em tela cheia`}
+                    className="block w-full text-left rounded-[1.5rem] transition-transform duration-500 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-royal/60 focus-visible:ring-offset-2"
+                    style={{
+                      filter:
+                        "drop-shadow(0 30px 50px oklch(0.18 0.12 265 / 0.18)) drop-shadow(0 12px 24px oklch(0.18 0.12 265 / 0.12))",
+                    }}
+                  >
                     <BeforeAfter before={r.before} after={r.after} alt={r.label} />
-                    <div className="mt-5 text-center">
-                      <h3 className="font-display text-lg sm:text-xl text-royal-deep tracking-tight">
-                        {r.label}
-                      </h3>
-                    </div>
-                  </article>
+                  </button>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Controls */}
-          <div className="mt-8 flex items-center justify-center gap-5">
+          <div className="mt-10 flex items-center justify-center gap-5">
             <button
               aria-label="Anterior"
               onClick={prev}
@@ -247,7 +264,7 @@ export function Results() {
               <ChevronLeft size={18} />
             </button>
             <div className="flex items-center gap-2">
-              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+              {results.map((_, i) => (
                 <button
                   key={i}
                   aria-label={`Ir para slide ${i + 1}`}
@@ -270,7 +287,6 @@ export function Results() {
           </div>
         </div>
 
-        {/* Final CTA */}
         <div className="mt-16 sm:mt-20 text-center max-w-2xl mx-auto">
           <p className="font-display text-xl sm:text-2xl lg:text-[1.75rem] leading-tight text-royal-deep">
             Seu resultado começa com uma{" "}
@@ -288,6 +304,32 @@ export function Results() {
           </a>
         </div>
       </div>
+
+      {openItem && (
+        <div
+          className="fixed inset-0 z-[100] grid place-items-center p-4 sm:p-8 bg-black/80 backdrop-blur-md animate-fade-in"
+          onClick={() => setOpenId(null)}
+        >
+          <div
+            className="relative w-full max-w-[560px] animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              aria-label="Fechar"
+              onClick={() => setOpenId(null)}
+              className="absolute -top-12 right-0 h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white grid place-items-center transition-colors"
+            >
+              <X size={18} />
+            </button>
+            <BeforeAfter
+              before={openItem.before}
+              after={openItem.after}
+              alt={openItem.label}
+              rounded="rounded-2xl"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

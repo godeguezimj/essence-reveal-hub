@@ -179,7 +179,7 @@ export function VideoProof() {
 
         {/* Mobile — carrossel autoplay com swipe */}
         <div
-          className="vp-marquee group/marquee relative mt-12 w-full overflow-x-auto overflow-y-hidden md:hidden"
+          className="vp-marquee group/marquee relative mt-12 max-w-[100vw] w-full overflow-x-auto overflow-y-hidden md:hidden"
           style={{
             WebkitMaskImage:
               "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",

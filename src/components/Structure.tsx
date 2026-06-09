@@ -7,6 +7,7 @@ import {
   Building2,
   ArrowRight,
   X,
+  Play,
 } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import structureVideo from "@/assets/structure-video.mp4.asset.json";

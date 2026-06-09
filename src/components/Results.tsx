@@ -188,17 +188,6 @@ export function Results() {
 
   return (
     <section id="resultados" className="relative py-20 sm:py-24 lg:py-32 overflow-hidden">
-      <div
-        aria-hidden
-        className="absolute -z-10 top-[-8rem] right-[-10rem] w-[38rem] h-[38rem] rounded-full blur-3xl opacity-55"
-        style={{ background: "radial-gradient(circle, oklch(0.48 0.22 263 / 0.18), transparent 70%)" }}
-      />
-      <div
-        aria-hidden
-        className="absolute -z-10 bottom-[-10rem] left-[-8rem] w-[42rem] h-[42rem] rounded-full blur-3xl opacity-50"
-        style={{ background: "radial-gradient(circle, oklch(0.62 0.18 260 / 0.16), transparent 70%)" }}
-      />
-
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-10">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 glass-gold rounded-full px-4 py-1.5 mb-6">

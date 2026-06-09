@@ -317,6 +317,12 @@
 }
 .animate-hero-float-img { animation: hero-float-img 7s ease-in-out infinite; }
 
+/* Hero team image — soft fade into background at the bottom */
+.hero-team-fade {
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+}
+
 @keyframes hero-glow {
   0%, 100% { opacity: 0.55; transform: scale(1); }
   50% { opacity: 0.8; transform: scale(1.04); }

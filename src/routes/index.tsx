@@ -9,7 +9,7 @@ import { Structure } from "@/components/Structure";
 import { Results } from "@/components/Results";
 import { LeadForm } from "@/components/LeadForm";
 import { Timeline } from "@/components/Timeline";
-import { About } from "@/components/About";
+
 
 import { Faq } from "@/components/Faq";
 import { FinalCta } from "@/components/FinalCta";
@@ -39,7 +39,7 @@ function Index() {
       <Structure />
       <LeadForm />
       <Timeline />
-      <About />
+      
       
       <Faq />
       <FinalCta />

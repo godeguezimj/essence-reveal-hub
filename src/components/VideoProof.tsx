@@ -230,14 +230,14 @@ export function VideoProof() {
             <X className="h-4 w-4" />
           </button>
           {active && (
-            <div className="overflow-hidden rounded-lg">
+            <div className="relative overflow-hidden rounded-lg bg-black">
               <video
                 key={active.id}
                 src={active.videoUrl}
-                poster={active.thumbnail}
                 controls
                 autoPlay
                 playsInline
+                preload="auto"
                 className="aspect-[9/16] w-full bg-black"
               />
             </div>

@@ -31,11 +31,6 @@ export function Hero() {
         <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
           {/* Copy column */}
           <div className="animate-fade-up text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] sm:text-[11px] tracking-[0.24em] uppercase text-royal/80 border border-royal/15 bg-white/60 backdrop-blur-sm mb-6">
-              <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-              Cirurgia Plástica Premium
-            </span>
-
             <h1 className="text-[2rem] sm:text-5xl lg:text-[3.5rem] leading-[1.08] sm:leading-[1.04] tracking-tight max-w-xl">
               Recupere sua confiança{" "}
               <span className="text-gradient-gold italic">sem perder</span> sua naturalidade

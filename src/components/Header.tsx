@@ -44,8 +44,8 @@ export function Header() {
         <div
           className={`mx-auto max-w-7xl px-5 sm:px-6 lg:px-10 flex items-center justify-between transition-all duration-500 ${
             scrolled
-              ? "h-[68px] sm:h-20 md:h-24 lg:h-24"
-              : "h-[84px] sm:h-24 md:h-28 lg:h-28"
+              ? "h-[60px] sm:h-20 md:h-24 lg:h-24"
+              : "h-[68px] sm:h-24 md:h-28 lg:h-28"
           }`}
         >
           <a
@@ -58,8 +58,8 @@ export function Header() {
               alt="Full Plástica"
               className={`w-auto object-contain transition-all duration-500 ${
                 scrolled
-                  ? "h-12 sm:h-14 md:h-16 lg:h-20"
-                  : "h-14 sm:h-16 md:h-20 lg:h-24"
+                  ? "h-14 sm:h-14 md:h-16 lg:h-20"
+                  : "h-16 sm:h-16 md:h-20 lg:h-24"
               }`}
             />
           </a>

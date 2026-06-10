@@ -1,5 +1,5 @@
 import { ArrowRight, Stethoscope, Hospital, Sparkles, Users, Star, Building2, ClipboardList, HeartHandshake } from "lucide-react";
-import teamAsset from "@/assets/team-couple.png.asset.json";
+import teamAsset from "@/assets/team-couple.png.png";
 
 // WhatsApp glyph — inline SVG to avoid extra deps
 function WhatsAppIcon({ size = 18 }: { size?: number }) {
@@ -70,7 +70,7 @@ export function Hero() {
                 style={{ background: "radial-gradient(ellipse at center, oklch(0.48 0.22 263 / 0.18), transparent 70%)" }}
               />
               <img
-                src={teamAsset.url}
+                src={teamAsset}
                 alt="Equipe médica especializada da Full Plástica"
                 className="relative block w-full h-auto object-contain animate-hero-float select-none pointer-events-none hero-team-fade"
                 loading="eager"

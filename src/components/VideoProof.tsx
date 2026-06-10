@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Play, X } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import video01 from "@/assets/video-01.mp4.asset.json";
-import video02 from "@/assets/video-02.mp4.asset.json";
-import video03 from "@/assets/video-03.mp4.asset.json";
-import video04 from "@/assets/video-04.mp4.asset.json";
+import video01 from "@/assets/video-01.mp4.mp4";
+import video02 from "@/assets/video-02.mp4.mp4";
+import video03 from "@/assets/video-03.mp4.mp4";
+import video04 from "@/assets/video-04.mp4.mp4";
 
 type VideoItem = {
   id: string;
@@ -20,25 +20,25 @@ const videos: VideoItem[] = [
     id: "video-01",
     thumbnail:
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80",
-    videoUrl: video01.url,
+    videoUrl: video01,
   },
   {
     id: "video-02",
     thumbnail:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80",
-    videoUrl: video02.url,
+    videoUrl: video02,
   },
   {
     id: "video-03",
     thumbnail:
       "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=80",
-    videoUrl: video03.url,
+    videoUrl: video03,
   },
   {
     id: "video-04",
     thumbnail:
       "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=900&q=80",
-    videoUrl: video04.url,
+    videoUrl: video04,
   },
 ];
 

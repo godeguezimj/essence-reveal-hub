@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, Move, X } from "lucide-react";
-import rinoAntes from "@/assets/rino-antes.jpg";
-import rinoDepois from "@/assets/rino-depois.jpg";
-import blefaroAntes from "@/assets/blefaro-antes.jpg";
-import blefaroDepois from "@/assets/blefaro-depois.jpg";
+import rinoAntes from "@/assets/lipo-2-antes.jpg";
+import rinoDepois from "@/assets/lipo-2-depois.jpg";
+import blefaroAntes from "@/assets/bunda-antes.jpg";
+import blefaroDepois from "@/assets/bunda-depois.jpg";
 import proteseAntes from "@/assets/protese-antes.jpg";
 import proteseDepois from "@/assets/protese-depois.jpg";
 import lipoAntes from "@/assets/lipo-antes.jpg";
@@ -248,7 +248,7 @@ export function Results() {
           onMouseLeave={() => setPaused(false)}
         >
           <div
-            className="overflow-hidden -mx-3 sm:-mx-4 px-1 py-6"
+            className="mx-3 sm:-mx-4 px-1 py-6"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
           >

@@ -10,7 +10,7 @@ import {
   Play,
 } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import structureVideo from "@/assets/structure-video.mp4.asset.json";
+import structureVideo from "@/assets/structure-video.mp4.mp4";
 
 const points = [
   "Centro cirúrgico hospitalar",
@@ -28,7 +28,7 @@ const trustBadges = [
 
 export function Structure() {
   const [open, setOpen] = useState(false);
-  const videoUrl = structureVideo.url;
+  const videoUrl = structureVideo;
 
   return (
     <section className="section-royal on-royal relative overflow-hidden py-20 sm:py-28 lg:py-36">

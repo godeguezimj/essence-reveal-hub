@@ -61,7 +61,7 @@ export function Hero() {
 
         <div className="grid lg:grid-cols-[1fr_1.1fr] gap-6 lg:gap-12 items-center">
           {/* Image column — appears first on mobile, second on desktop */}
-          <div className="relative order-1 lg:order-2 animate-fade-up">
+          <div className="relative order-2 lg:order-2 animate-fade-up">
             <div className="relative mx-auto w-[78%] max-w-[20rem] sm:max-w-[28rem] lg:w-full lg:max-w-none lg:-mr-10 xl:-mr-16 lg:-mt-8 xl:-mt-12 lg:-mb-16">
               {/* Soft ambient shadow */}
               <div
@@ -80,7 +80,7 @@ export function Hero() {
           </div>
 
           {/* Copy column */}
-          <div className="text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
+          <div className="text-center lg:text-left flex flex-col items-center lg:items-start order-1 lg:order-1">
             {/* Desktop-only authority chips */}
             <ul
               className="hidden lg:flex flex-wrap items-center gap-x-4 gap-y-2 mb-5 animate-fade-up"

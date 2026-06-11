@@ -38,7 +38,7 @@ export function Footer() {
               <a href="https://wa.me/" target="_blank" rel="noreferrer" className="btn-gold inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-medium">
                 <MessageCircle size={15} /> WhatsApp
               </a>
-              <a href="https://instagram.com/" target="_blank" rel="noreferrer" className="btn-outline-gold inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-medium">
+              <a href="https://www.instagram.com/fullplastica/" target="_blank" rel="noreferrer" className="btn-outline-gold inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-sm font-medium">
                 <Instagram size={15} /> Instagram
               </a>
             </div>

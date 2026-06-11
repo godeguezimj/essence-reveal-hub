@@ -15,32 +15,24 @@ type VideoItem = {
 const SAMPLE_VIDEO =
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 
-const videos: VideoItem[] = [
-  {
-    id: "video-01",
-    thumbnail:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80",
-    videoUrl: video01,
-  },
-  {
-    id: "video-02",
-    thumbnail:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80",
-    videoUrl: video02,
-  },
-  {
-    id: "video-03",
-    thumbnail:
-      "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=80",
-    videoUrl: video03,
-  },
-  {
-    id: "video-04",
-    thumbnail:
-      "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=900&q=80",
-    videoUrl: video04,
-  },
-];
+  const videos: VideoItem[] = [
+    {
+      id: "video-01",
+      videoUrl: video01,
+    },
+    {
+      id: "video-02",
+      videoUrl: video02,
+    },
+    {
+      id: "video-03",
+      videoUrl: video03,
+    },
+    {
+      id: "video-04",
+      videoUrl: video04,
+    },
+  ];
 
 function VideoTile({
   video,
@@ -79,22 +71,14 @@ function VideoTile({
       onClick={() => onOpen(video)}
       className="group relative block aspect-[9/16] h-full w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-black shadow-[0_20px_60px_-30px_rgba(0,0,0,0.8)] transition-all duration-500 hover:-translate-y-1 hover:scale-[1.02] hover:border-[oklch(0.78_0.13_85_/_0.55)] hover:shadow-[0_40px_100px_-30px_oklch(0.55_0.18_265_/_0.55)]"
     >
-      {!ready && (
-        <img
-          src={video.thumbnail}
-          alt=""
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      )}
-      <video
+
+    <video
         ref={videoRef}
         src={video.videoUrl}
-        poster={video.thumbnail}
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         autoPlay
         onLoadedData={() => setReady(true)}
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"

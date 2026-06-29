@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Check,
   ShieldCheck,
@@ -10,7 +10,9 @@ import {
   Play,
 } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import structureVideo from "@/assets/structure-video.mp4.mp4";
+
+const structureVideo = "/videos/structure-video.mp4";
+const structurePoster = "/videos/posters/structure-video.jpg";
 
 const points = [
   "Centro cirúrgico hospitalar",

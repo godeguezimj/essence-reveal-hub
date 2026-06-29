@@ -30,7 +30,29 @@ const trustBadges = [
 
 export function Structure() {
   const [open, setOpen] = useState(false);
+  const [previewActive, setPreviewActive] = useState(false);
+  const previewRef = useRef<HTMLDivElement | null>(null);
+  const videoElRef = useRef<HTMLVideoElement | null>(null);
   const videoUrl = structureVideo;
+
+  useEffect(() => {
+    const el = previewRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!previewActive) setPreviewActive(true);
+          else videoElRef.current?.play().catch(() => {});
+        } else {
+          videoElRef.current?.pause();
+        }
+      },
+      { threshold: 0.25, rootMargin: "200px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [previewActive]);
+
 
   return (
     <section className="section-royal on-royal relative overflow-hidden py-20 sm:py-28 lg:py-36">

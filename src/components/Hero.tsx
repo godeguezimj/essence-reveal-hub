@@ -70,10 +70,15 @@ export function Hero() {
                 style={{ background: "radial-gradient(ellipse at center, oklch(0.48 0.22 263 / 0.18), transparent 70%)" }}
               />
               <img
-                src={teamAsset}
+                src="/imagens/team-couple.webp"
+                srcSet="/imagens/team-couple-sm.webp 720w, /imagens/team-couple.webp 1200w"
+                sizes="(max-width: 1024px) 78vw, 560px"
+                width={1200}
+                height={1200}
                 alt="Equipe médica especializada da Full Plástica"
                 className="relative block w-full h-auto object-contain animate-hero-float select-none pointer-events-none hero-team-fade"
                 loading="eager"
+                fetchPriority="high"
                 decoding="async"
               />
             </div>

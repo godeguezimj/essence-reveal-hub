@@ -8,7 +8,7 @@ import video04 from "@/assets/video-04.mp4.mp4";
 
 type VideoItem = {
   id: string;
-  thumbnail: string;
+  thumbnail?: string;
   videoUrl: string;
 };
 

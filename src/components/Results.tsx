@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight, Move, X } from "lucide-react";
-import rinoAntes from "@/assets/lipo-2-antes.jpg";
-import rinoDepois from "@/assets/lipo-2-depois.jpg";
-import blefaroAntes from "@/assets/bunda-antes.jpg";
-import blefaroDepois from "@/assets/bunda-depois.jpg";
-import proteseAntes from "@/assets/protese-antes.jpg";
-import proteseDepois from "@/assets/protese-depois.jpg";
-import lipoAntes from "@/assets/lipo-antes.jpg";
-import lipoDepois from "@/assets/lipo-depois.jpg";
+import rinoAntes from "@/assets/lipo-2-antes.webp";
+import rinoDepois from "@/assets/lipo-2-depois.webp";
+import blefaroAntes from "@/assets/bunda-antes.webp";
+import blefaroDepois from "@/assets/bunda-depois.webp";
+import proteseAntes from "@/assets/protese-antes.webp";
+import proteseDepois from "@/assets/protese-depois.webp";
+import lipoAntes from "@/assets/lipo-antes.webp";
+import lipoDepois from "@/assets/lipo-depois.webp";
 
 interface Result {
   id: string;

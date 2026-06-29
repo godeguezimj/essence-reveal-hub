@@ -1,5 +1,5 @@
 import { Instagram, MessageCircle, Mail, MapPin } from "lucide-react";
-import logo from "@/assets/logo-full-plastica.png";
+import logo from "@/assets/logo-full-plastica.webp";
 
 const links = [
   { href: "#inicio", label: "Início" },

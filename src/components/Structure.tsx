@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Check,
   ShieldCheck,
@@ -10,7 +10,9 @@ import {
   Play,
 } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import structureVideo from "@/assets/structure-video.mp4.mp4";
+
+const structureVideo = "/videos/structure-video.mp4";
+const structurePoster = "/videos/posters/structure-video.jpg";
 
 const points = [
   "Centro cirúrgico hospitalar",
@@ -28,7 +30,29 @@ const trustBadges = [
 
 export function Structure() {
   const [open, setOpen] = useState(false);
+  const [previewActive, setPreviewActive] = useState(false);
+  const previewRef = useRef<HTMLDivElement | null>(null);
+  const videoElRef = useRef<HTMLVideoElement | null>(null);
   const videoUrl = structureVideo;
+
+  useEffect(() => {
+    const el = previewRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!previewActive) setPreviewActive(true);
+          else videoElRef.current?.play().catch(() => {});
+        } else {
+          videoElRef.current?.pause();
+        }
+      },
+      { threshold: 0.25, rootMargin: "200px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [previewActive]);
+
 
   return (
     <section className="section-royal on-royal relative overflow-hidden py-20 sm:py-28 lg:py-36">
@@ -76,7 +100,7 @@ export function Structure() {
         <div className="grid lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 items-center">
           {/* Video side — vertical 9:16 premium */}
           <div className="lg:order-2 flex justify-center">
-            <div className="relative animate-spotlight-float w-full max-w-[360px] sm:max-w-[400px] lg:max-w-[420px]">
+            <div ref={previewRef} className="relative animate-spotlight-float w-full max-w-[360px] sm:max-w-[400px] lg:max-w-[420px]">
               <div
                 aria-hidden
                 className="absolute -inset-10 sm:-inset-14 rounded-[3rem] blur-3xl opacity-70 animate-spotlight-glow"
@@ -100,15 +124,27 @@ export function Structure() {
                 aria-label="Abrir vídeo institucional"
                 className="group relative block w-full aspect-[9/16] rounded-[1.75rem] sm:rounded-[2.25rem] overflow-hidden border border-white/15 shadow-[0_40px_80px_-30px_oklch(0.18_0.12_265_/_0.7)] transition-transform duration-500 hover:scale-[1.02]"
               >
-                <video
-                  src={videoUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                {previewActive ? (
+                  <video
+                    ref={videoElRef}
+                    src={videoUrl}
+                    poster={structurePoster}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <img
+                    src={structurePoster}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                )}
 
                 {/* Cinematic gradient overlay */}
                 <div
@@ -243,6 +279,7 @@ export function Structure() {
           <div className="overflow-hidden rounded-2xl bg-black">
             <video
               src={videoUrl}
+              poster={structurePoster}
               controls
               autoPlay
               playsInline

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
-import logoAzul from "@/assets/logo-full-plastica-azul.png";
+import logoAzul from "@/assets/logo-full-plastica-azul.webp";
 
 const links = [
   { href: "#inicio", label: "Início" },

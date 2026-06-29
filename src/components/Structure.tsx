@@ -279,6 +279,7 @@ export function Structure() {
           <div className="overflow-hidden rounded-2xl bg-black">
             <video
               src={videoUrl}
+              poster={structurePoster}
               controls
               autoPlay
               playsInline

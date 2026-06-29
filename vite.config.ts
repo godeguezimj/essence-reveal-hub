@@ -25,7 +25,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          react: ["react", "react-dom"],
           radix: [
             "@radix-ui/react-dialog",
             "@radix-ui/react-accordion",

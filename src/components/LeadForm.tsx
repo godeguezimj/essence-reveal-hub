@@ -5,104 +5,71 @@ import {
   Sparkles,
   Eye,
   Wand2,
-  HelpCircle,
   Heart,
-  Smile,
-  Moon,
   Search,
   Zap,
   CalendarClock,
   CalendarRange,
   User,
   Phone,
+  MapPin,
   ArrowRight,
   ArrowLeft,
   Check,
   ShieldCheck,
   MessageCircle,
   Droplet,
-  Sun,
-  Waves,
   Activity,
-  Scan,
-  Wind,
-  Mountain,
-  Maximize2,
-  Layers,
-  Ruler,
-  Feather,
+  Smile,
+  Leaf,
+  Baby,
+  MoreHorizontal,
+  Loader2,
 } from "lucide-react";
+
+// ============================================================================
+// CONFIGURAÇÃO — ajuste estas constantes quando o webhook/WhatsApp forem definidos
+// ============================================================================
+const WEBHOOK_URL = "https://webhook.exemplo.com/full-plastica-leads"; // TODO: substituir pela URL real
+const WHATSAPP_REDIRECT_URL = "https://wa.me/?text=" + encodeURIComponent(
+  "Olá! Acabei de preencher a pré-avaliação no site da Full Plástica e gostaria de falar com um especialista."
+);
+const PAGINA_ORIGEM = "Landing Page Full Plástica";
+// ============================================================================
 
 type Option = { value: string; label: string; icon: React.ComponentType<{ className?: string }> };
 
-type ProcedureKey = "Blefaroplastia" | "Lipo HD" | "Prótese de Silicone" | "Rinoplastia";
 type LeadFormState = {
   nome: string;
   whatsapp: string;
+  cidade: string;
   procedimento: string;
-  incomodo: string;
+  objetivo: string;
   prazo: string;
 };
 
 const procedimentos: Option[] = [
-  { value: "Blefaroplastia", label: "Blefaroplastia", icon: Eye },
-  { value: "Lipo HD", label: "Lipo HD", icon: Activity },
-  { value: "Prótese de Silicone", label: "Prótese de Silicone", icon: Droplet },
   { value: "Rinoplastia", label: "Rinoplastia", icon: Sparkles },
+  { value: "Lipo HD", label: "Lipo HD", icon: Activity },
+  { value: "Lipoescultura", label: "Lipoescultura", icon: Wand2 },
+  { value: "Prótese de Mama", label: "Prótese de Mama", icon: Droplet },
+  { value: "Blefaroplastia", label: "Blefaroplastia", icon: Eye },
+  { value: "Outro procedimento", label: "Outro procedimento", icon: MoreHorizontal },
 ];
 
-const incomodosPorProcedimento: Record<ProcedureKey, { title: string; hint: string; options: Option[] }> = {
-  Blefaroplastia: {
-    title: "O que mais te incomoda hoje?",
-    hint: "Queremos entender o que faz sentido para você.",
-    options: [
-      { value: "Pálpebras caídas", label: "Pálpebras caídas", icon: Moon },
-      { value: "Bolsas abaixo dos olhos", label: "Bolsas abaixo dos olhos", icon: Eye },
-      { value: "Aparência de cansaço", label: "Aparência de cansaço", icon: Smile },
-      { value: "Olhar pesado", label: "Olhar pesado", icon: Sun },
-      { value: "Quero entender meu caso", label: "Quero entender meu caso", icon: Search },
-    ],
-  },
-  "Lipo HD": {
-    title: "O que você deseja melhorar?",
-    hint: "Cada corpo possui necessidades diferentes.",
-    options: [
-      { value: "Gordura localizada", label: "Gordura localizada", icon: Waves },
-      { value: "Definição abdominal", label: "Definição abdominal", icon: Activity },
-      { value: "Contorno corporal", label: "Contorno corporal", icon: Scan },
-      { value: "Flacidez", label: "Flacidez", icon: Layers },
-      { value: "Quero entender meu caso", label: "Quero entender meu caso", icon: Search },
-    ],
-  },
-  "Prótese de Silicone": {
-    title: "O que você busca com o procedimento?",
-    hint: "Seu planejamento deve respeitar sua anatomia e seus objetivos.",
-    options: [
-      { value: "Mais volume", label: "Mais volume", icon: Maximize2 },
-      { value: "Mais harmonia corporal", label: "Mais harmonia corporal", icon: Wand2 },
-      { value: "Recuperar autoestima", label: "Recuperar autoestima", icon: Heart },
-      { value: "Melhorar proporção", label: "Melhorar proporção", icon: Ruler },
-      { value: "Quero entender meu caso", label: "Quero entender meu caso", icon: Search },
-    ],
-  },
-  Rinoplastia: {
-    title: "O que mais te incomoda no nariz?",
-    hint: "Vamos entender qual abordagem faz mais sentido para você.",
-    options: [
-      { value: "Nariz torto", label: "Nariz torto", icon: Wand2 },
-      { value: "Giba óssea", label: "Giba óssea", icon: Mountain },
-      { value: "Ponta caída", label: "Ponta caída", icon: Feather },
-      { value: "Nariz largo", label: "Nariz largo", icon: Maximize2 },
-      { value: "Respiração", label: "Respiração", icon: Wind },
-      { value: "Quero entender meu caso", label: "Quero entender meu caso", icon: Search },
-    ],
-  },
-};
+const objetivos: Option[] = [
+  { value: "Melhorar minha autoestima", label: "Melhorar minha autoestima", icon: Heart },
+  { value: "Corrigir uma característica que me incomoda", label: "Corrigir uma característica que me incomoda", icon: Smile },
+  { value: "Recuperar minha aparência após gestação ou emagrecimento", label: "Recuperar minha aparência após gestação ou emagrecimento", icon: Baby },
+  { value: "Quero um resultado mais natural", label: "Quero um resultado mais natural", icon: Leaf },
+  { value: "Ainda estou pesquisando", label: "Ainda estou pesquisando", icon: Search },
+];
 
 const prazos: Option[] = [
-  { value: "O mais rápido possível", label: "O mais rápido possível", icon: Zap },
-  { value: "Nos próximos meses", label: "Nos próximos meses", icon: CalendarClock },
-  { value: "Apenas pesquisando", label: "Apenas pesquisando", icon: CalendarRange },
+  { value: "O quanto antes", label: "O quanto antes", icon: Zap },
+  { value: "Nos próximos 3 meses", label: "Nos próximos 3 meses", icon: CalendarClock },
+  { value: "Entre 3 e 6 meses", label: "Entre 3 e 6 meses", icon: CalendarRange },
+  { value: "Ainda estou pesquisando", label: "Ainda estou pesquisando", icon: Search },
 ];
 
 function formatWhatsapp(raw: string) {
@@ -113,9 +80,15 @@ function formatWhatsapp(raw: string) {
   return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
 }
 
+function getUrlParam(name: string): string {
+  if (typeof window === "undefined") return "";
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name) ?? "";
+}
+
 const STEPS = [
   { key: "procedimento", label: "Procedimento" },
-  { key: "incomodo", label: "Incômodo" },
+  { key: "objetivo", label: "Objetivo" },
   { key: "prazo", label: "Prazo" },
   { key: "contato", label: "Contato" },
 ] as const;
@@ -123,8 +96,9 @@ const STEPS = [
 const initialForm: LeadFormState = {
   nome: "",
   whatsapp: "",
+  cidade: "",
   procedimento: "",
-  incomodo: "",
+  objetivo: "",
   prazo: "",
 };
 
@@ -132,15 +106,15 @@ export function LeadForm() {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [form, setForm] = useState<LeadFormState>(initialForm);
+  const [submitting, setSubmitting] = useState(false);
 
   const total = STEPS.length;
   const progress = ((step + 1) / total) * 100;
 
   const goNext = () => {
-    const currentForm = form;
-    if (step === 0 && !currentForm.procedimento) return toast.error("Escolha um procedimento para continuar.");
-    if (step === 1 && !currentForm.incomodo) return toast.error("Selecione o que mais te incomoda hoje.");
-    if (step === 2 && !currentForm.prazo) return toast.error("Indique quando pretende realizar.");
+    if (step === 0 && !form.procedimento) return toast.error("Escolha um procedimento para continuar.");
+    if (step === 1 && !form.objetivo) return toast.error("Selecione o que mais motivou você.");
+    if (step === 2 && !form.prazo) return toast.error("Indique quando pretende realizar.");
     setDirection(1);
     setStep((s) => Math.min(s + 1, total - 1));
   };
@@ -150,15 +124,54 @@ export function LeadForm() {
     setStep((s) => Math.max(s - 1, 0));
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.nome.trim() || !form.whatsapp.trim()) {
-      toast.error("Preencha nome e WhatsApp para continuar.");
+    if (!form.nome.trim() || !form.whatsapp.trim() || !form.cidade.trim()) {
+      toast.error("Preencha nome, WhatsApp e cidade para continuar.");
       return;
     }
-    toast.success("Recebemos seus dados. A equipe Full Plástica entrará em contato em breve.");
-    setForm(initialForm);
-    setStep(0);
+    if (submitting) return;
+
+    const payload = {
+      procedimento: form.procedimento,
+      objetivo: form.objetivo,
+      prazo: form.prazo,
+      nome: form.nome.trim(),
+      whatsapp: form.whatsapp.trim(),
+      cidade: form.cidade.trim(),
+      pagina: PAGINA_ORIGEM,
+      dataHora: new Date().toISOString(),
+      utm_source: getUrlParam("utm_source"),
+      utm_medium: getUrlParam("utm_medium"),
+      utm_campaign: getUrlParam("utm_campaign"),
+      utm_content: getUrlParam("utm_content"),
+      utm_term: getUrlParam("utm_term"),
+      fbclid: getUrlParam("fbclid"),
+      gclid: getUrlParam("gclid"),
+    };
+
+    setSubmitting(true);
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      toast.success("Recebemos seus dados. Você será redirecionado ao WhatsApp.");
+      setForm(initialForm);
+      setStep(0);
+      // pequena pausa para o usuário ver o toast antes do redirect
+      setTimeout(() => {
+        window.location.href = WHATSAPP_REDIRECT_URL;
+      }, 900);
+    } catch (err) {
+      console.error("Erro ao enviar lead:", err);
+      toast.error("Não conseguimos enviar seus dados. Tente novamente em instantes.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -249,25 +262,21 @@ export function LeadForm() {
             <form onSubmit={submit} className="mt-9">
               <div key={step} className={direction === 1 ? "animate-step-in" : "animate-step-in-back"}>
                 {step === 0 && (
-                  <StepQuestion title="Qual procedimento deseja entender melhor?" hint="Você pode mudar essa escolha depois.">
+                  <StepQuestion title="Qual procedimento você deseja avaliar?" hint="Você pode mudar essa escolha depois.">
                     <ChoicesGrid options={procedimentos} value={form.procedimento}
-                      onChange={(v) => setForm((current) => ({ ...current, procedimento: v, incomodo: "" }))} />
+                      onChange={(v) => setForm((current) => ({ ...current, procedimento: v }))} />
                   </StepQuestion>
                 )}
 
-                {step === 1 && (() => {
-                  const cfg = incomodosPorProcedimento[form.procedimento as ProcedureKey];
-                  if (!cfg) return null;
-                  return (
-                    <StepQuestion title={cfg.title} hint={cfg.hint}>
-                      <ChoicesGrid options={cfg.options} value={form.incomodo}
-                        onChange={(v) => setForm((current) => ({ ...current, incomodo: v }))} />
-                    </StepQuestion>
-                  );
-                })()}
+                {step === 1 && (
+                  <StepQuestion title="O que mais motivou você a buscar esse procedimento?" hint="Sua resposta nos ajuda a personalizar a orientação.">
+                    <ChoicesGrid options={objetivos} value={form.objetivo} columns={1}
+                      onChange={(v) => setForm((current) => ({ ...current, objetivo: v }))} />
+                  </StepQuestion>
+                )}
 
                 {step === 2 && (
-                  <StepQuestion title="Quando pretende realizar?" hint="Sem compromisso — apenas para entendermos o seu momento.">
+                  <StepQuestion title="Quando pretende realizar o procedimento?" hint="Sem compromisso — apenas para entendermos o seu momento.">
                     <ChoicesGrid options={prazos} value={form.prazo} columns={1}
                       onChange={(v) => setForm((current) => ({ ...current, prazo: v }))} />
                   </StepQuestion>
@@ -293,6 +302,16 @@ export function LeadForm() {
                         placeholder="(00) 00000-0000"
                         autoComplete="tel"
                       />
+                      <div className="sm:col-span-2">
+                        <InputField
+                          icon={MapPin}
+                          label="Cidade"
+                          value={form.cidade}
+                          onChange={(v) => setForm({ ...form, cidade: v })}
+                          placeholder="Sua cidade"
+                          autoComplete="address-level2"
+                        />
+                      </div>
                     </div>
                   </StepQuestion>
                 )}
@@ -303,7 +322,7 @@ export function LeadForm() {
                 <button
                   type="button"
                   onClick={goBack}
-                  disabled={step === 0}
+                  disabled={step === 0 || submitting}
                   className="inline-flex items-center justify-center sm:justify-start gap-2 text-sm text-foreground/70 hover:text-royal disabled:opacity-0 transition-all min-h-[44px]"
                 >
                   <ArrowLeft className="h-4 w-4" /> Voltar
@@ -320,9 +339,18 @@ export function LeadForm() {
                 ) : (
                   <button
                     type="submit"
-                    className="btn-gold inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[54px] px-7 py-3.5 rounded-full text-sm font-medium"
+                    disabled={submitting}
+                    className="btn-gold inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[54px] px-7 py-3.5 rounded-full text-sm font-medium disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Receber avaliação personalizada <ArrowRight className="h-4 w-4" />
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" /> Enviando...
+                      </>
+                    ) : (
+                      <>
+                        Quero falar com um especialista <ArrowRight className="h-4 w-4" />
+                      </>
+                    )}
                   </button>
                 )}
               </div>

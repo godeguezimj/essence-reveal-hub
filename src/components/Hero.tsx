@@ -1,5 +1,5 @@
 import { ArrowRight, Stethoscope, Hospital, Sparkles, Users, Star, Building2, ClipboardList, HeartHandshake } from "lucide-react";
-import teamAsset from "@/assets/team-couple.png.png";
+
 
 // WhatsApp glyph — inline SVG to avoid extra deps
 function WhatsAppIcon({ size = 18 }: { size?: number }) {
